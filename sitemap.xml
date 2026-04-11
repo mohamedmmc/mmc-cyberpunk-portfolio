@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://cyber-cv.mohamedmelekchtourou.com/</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyber-cv.mohamedmelekchtourou.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyber-cv.mohamedmelekchtourou.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cyber-cv.mohamedmelekchtourou.com/" />
+    <image:image>
+      <image:loc>https://cyber-cv.mohamedmelekchtourou.com/assets/img/mmc2.jpg</image:loc>
+      <image:title>Mohamed Melek Chtourou</image:title>
+      <image:caption>Ingénieur Flutter &amp; Node.js</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Projects -->
+  <url>
+    <loc>https://cyber-cv.mohamedmelekchtourou.com/projects/thelandlord.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://cyber-cv.mohamedmelekchtourou.com/assets/img/portfolio/thelandlord/logotll.png</image:loc>
+      <image:title>The Landlord — Plateforme immobilière</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://cyber-cv.mohamedmelekchtourou.com/projects/lost-found.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cyber-cv.mohamedmelekchtourou.com/assets/img/portfolio/lost&amp;found/lost&amp;found3.png</image:loc>
+      <image:title>Lost &amp; Found — App iOS/Android/Huawei</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://cyber-cv.mohamedmelekchtourou.com/projects/tesa.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://cyber-cv.mohamedmelekchtourou.com/assets/img/portfolio/Tesa/TesaLogo.png</image:loc>
+      <image:title>TESA — Esport tournament app</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://cyber-cv.mohamedmelekchtourou.com/projects/randev.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://cyber-cv.mohamedmelekchtourou.com/assets/img/portfolio/randev/randev.png</image:loc>
+      <image:title>Randev — B2B appointments</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://cyber-cv.mohamedmelekchtourou.com/projects/artisan-dart.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://cyber-cv.mohamedmelekchtourou.com/assets/img/portfolio/artisanDart/logoName2.webp</image:loc>
+      <image:title>Artisan d'Art — Marketplace fullstack</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://cyber-cv.mohamedmelekchtourou.com/projects/esprit-app.html</loc>
+    <lastmod>2026-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://cyber-cv.mohamedmelekchtourou.com/assets/img/portfolio/esprit/esprit.png</image:loc>
+      <image:title>Esprit App — iOS native campus app</image:title>
+    </image:image>
+  </url>
+
+</urlset>

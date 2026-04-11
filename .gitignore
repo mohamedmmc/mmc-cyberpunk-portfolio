@@ -1,0 +1,37 @@
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Editor / IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Claude Code / local dev config
+.claude/
+.tasks/
+
+# Node (not used, but in case anyone adds tooling later)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+pnpm-lock.yaml
+
+# Wrangler (Cloudflare Workers) local state
+worker/.wrangler/
+worker/node_modules/
+worker/.dev.vars
+
+# Logs
+*.log
+
+# ----------------------------------------------------------------------
+# Private dev journal — these would spoil the CTF or expose draft notes.
+# Keep them out of the public repo.
+# ----------------------------------------------------------------------
+errors.md
+STATUS.md

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="danger">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
+  <meta name="google-site-verification" content="1NaVBAib9wmWtcFraGKaPpc8PTY94yaMZ6rFvMctKy8" />
+  <title>404 — Page non trouvée | Mohamed Melek Chtourou</title>
+  <meta name="description" content="Page introuvable. Retournez à l'accueil du portfolio de Mohamed Melek Chtourou." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://cyber-cv.mohamedmelekchtourou.com/" />
+
+  <script src="js/analytics.js"></script>
+  <script src="js/track.js"></script>
+
+  <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/cyberpunk.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/games.css" />
+</head>
+<body>
+
+  <canvas id="matrix-canvas" class="matrix-canvas"></canvas>
+  <div class="scanlines"></div>
+  <div class="crt-vignette"></div>
+  <div class="noise"></div>
+
+  <div class="hud-brackets">
+    <div class="bracket bracket-tl"></div>
+    <div class="bracket bracket-tr"></div>
+    <div class="bracket bracket-bl"></div>
+    <div class="bracket bracket-br"></div>
+  </div>
+
+  <header class="status-bar">
+    <div class="status-left">
+      <span class="status-dot" style="background:var(--neon-danger);box-shadow:0 0 8px var(--neon-danger);"></span>
+      <span>ERROR_HANDLER.EXE // CONNECTION_LOST</span>
+    </div>
+    <div class="status-right">
+      <a href="index.html" style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;">← HOME</a>
+    </div>
+  </header>
+
+  <div class="err-wrap">
+    <div>
+      <h1 class="err-code glitch" data-text="404">404</h1>
+      <h2 class="err-title">SIGNAL_LOST // PAGE_NOT_FOUND</h2>
+      <p class="err-msg">
+        &gt; The page you are looking for has been moved,<br />
+        &gt; deleted, compiled to /dev/null, or never existed.<br />
+        &gt; The mainframe has rejected your request.<br /><br />
+        <span style="color:var(--neon-primary);text-shadow:var(--glow-sm);">[TIP]</span> Press <kbd style="background:rgba(0,240,255,0.1);border:1px solid var(--border-glow);padding:2px 8px;color:var(--neon-primary);">/</kbd> to open the terminal and explore.
+      </p>
+      <div style="display:flex;gap:var(--s2);justify-content:center;flex-wrap:wrap;">
+        <a href="index.html" class="btn-cyber">→ RETURN_HOME</a>
+        <a href="index.html#projects" class="btn-cyber btn-ghost">→ SEE_PROJECTS</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span class="prompt">~$</span>
+    <span>HTTP 404 — Not Found. Press / to open terminal.</span>
+    <span class="blink">_</span>
+  </div>
+
+  <div id="term-modal" class="term-modal">
+    <div class="term-modal-inner">
+      <div class="term-modal-head">
+        <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+        <span class="t-title">root@chtourou.sh</span>
+        <button class="t-close">✕</button>
+      </div>
+      <div class="term-modal-body"></div>
+      <div class="term-input-wrap">
+        <span class="p">root@chtourou:~$</span>
+        <input type="text" id="term-input" autocomplete="off" spellcheck="false" />
+        <span class="caret">_</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/cursor.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/matrix-rain.js"></script>
+  <script src="js/fx.js"></script>
+  <script src="js/mode.js"></script>
+  <script src="js/glitch.js"></script>
+  <script src="js/vfs.js"></script>
+  <script src="js/chip.js"></script>
+  <script src="js/ctf.js"></script>
+  <script src="js/xp.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/voight-kampff.js"></script>
+  <script src="js/ai-chat.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/easter-eggs.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.MMC_SOUND) { MMC_SOUND.init(); setTimeout(() => MMC_SOUND.presets.error(), 400); }
+      if (window.MMC_MATRIX) MMC_MATRIX.start();
+      if (window.MMC_GLITCH) MMC_GLITCH.initGlitchText();
+      if (window.MMC_TERM) MMC_TERM.init();
+      if (window.MMC_EASTER) MMC_EASTER.init();
+      if (window.MMC_ACHIEVEMENTS) setTimeout(() => MMC_ACHIEVEMENTS.unlock("LOST_IN_404", "You found the 404 page. Cool explorer."), 1500);
+    });
+  </script>
+</body>
+</html>

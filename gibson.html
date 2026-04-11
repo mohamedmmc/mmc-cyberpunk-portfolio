@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="matrix">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
+  <meta name="google-site-verification" content="1NaVBAib9wmWtcFraGKaPpc8PTY94yaMZ6rFvMctKy8" />
+  <title>Gibson — Hidden reward | Mohamed Melek Chtourou</title>
+  <meta name="description" content="You found the hidden Gibson page. Reward for geeks who cracked the 5-step CTF challenge." />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <script src="js/analytics.js"></script>
+  <script src="js/track.js"></script>
+
+  <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/cyberpunk.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/games.css" />
+  <link rel="stylesheet" href="css/gibson.css" />
+</head>
+<body>
+
+  <canvas id="matrix-canvas" class="matrix-canvas" style="opacity:0.35"></canvas>
+  <div class="scanlines"></div>
+  <div class="crt-vignette"></div>
+  <div class="noise"></div>
+
+  <div class="hud-brackets">
+    <div class="bracket bracket-tl"></div>
+    <div class="bracket bracket-tr"></div>
+    <div class="bracket bracket-bl"></div>
+    <div class="bracket bracket-br"></div>
+  </div>
+
+  <header class="status-bar">
+    <div class="status-left">
+      <span class="status-dot" style="background:var(--neon-accent);box-shadow:0 0 8px var(--neon-accent);"></span>
+      <span>GIBSON.EXE // DEEP_ACCESS</span>
+    </div>
+    <div class="status-right">
+      <a href="index.html" style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;">← BACK_TO_INDEX</a>
+    </div>
+  </header>
+
+  <main>
+  <section class="gibson-hero">
+    <div>
+      <h1 class="gibson-access glitch" data-text="ACCESS GRANTED">ACCESS GRANTED</h1>
+      <p class="gibson-sub">// Welcome to The Gibson. Only real geeks make it this far.</p>
+
+      <div class="gibson-content">
+        <pre class="gibson-ascii">
+  ╔══════════════════════════════════════════════════════════╗
+  ║   T H E   G I B S O N                                   ║
+  ║   super-computer // security-level: maximum              ║
+  ║   infiltration log: 1 human                              ║
+  ╚══════════════════════════════════════════════════════════╝
+        </pre>
+
+        <h2>&gt; /root/letter.md</h2>
+        <p>
+          Hey. If you're reading this, you:
+        </p>
+        <p style="padding-left:20px;">
+          1. Found the hidden CTF hint in the README<br>
+          2. Decoded the base64 clue<br>
+          3. Guessed the sudo password (42, respect)<br>
+          4. Decrypted the ROT13 shadow file<br>
+          5. Recognized "Gibson" from <em>Hackers</em> (1995)
+        </p>
+        <p>
+          That's a serious culture check. Most visitors to a portfolio give up at step 1. You didn't. That says something about how you approach problems.
+        </p>
+        <p>
+          I built this site because generic portfolios feel dead. I wanted something that rewards curiosity — the way great code and great systems do. If you made it here, we probably share a brain-wavelength about how software (and fun) should feel.
+        </p>
+
+        <h2>&gt; /root/stack_of_the_moment.md</h2>
+        <p>What I'm actually exploring right now (beyond the official CV):</p>
+        <ul class="stack-list">
+          <li>Rust — because I want systems-level power without footguns</li>
+          <li>Flutter 3 + Riverpod — cleaner state for big mobile apps</li>
+          <li>Self-hosted infra on bare metal (OVH, Proxmox, Cloudflare tunnels)</li>
+          <li>LLM agent orchestration (Claude Agent SDK, tool-calling patterns)</li>
+          <li>Offline-first apps with sync protocols (CRDTs, Yjs)</li>
+          <li>WebGL / Canvas creative coding (yes, for portfolios like this one)</li>
+        </ul>
+
+        <h2>&gt; /root/contact.md</h2>
+        <p>
+          If you want to talk — about a mission, a weird side project, an open-source idea, or just geek stuff — you already know my email:
+        </p>
+        <p>
+          <a href="mailto:contact@mohamedmelekchtourou.com?subject=Gibson%20Access" style="color:var(--neon-accent);text-shadow:0 0 6px var(--neon-accent);font-size:1rem;word-break:break-all;">contact@mohamedmelekchtourou.com</a>
+        </p>
+        <p>
+          If you mention <b>"Gibson access"</b> in your subject line, I'll know you cracked the CTF — and I'll reply faster. Promise.
+        </p>
+
+        <p class="signature">— Mohamed<br><span style="opacity:0.6;font-size:0.75rem;">// compiled with ❤ in Tunisia</span></p>
+
+        <div class="gibson-cta">
+          <a href="mailto:contact@mohamedmelekchtourou.com?subject=Gibson%20Access" class="btn-cyber">→ transmit_signal</a>
+          <a href="index.html" class="btn-cyber btn-ghost">← return_home</a>
+          <a href="index.html#projects" class="btn-cyber btn-magenta">→ view_projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <div class="bottom-bar">
+    <span class="prompt">~$</span>
+    <span>cat /root/secret.md — level: CONSOLE COWBOY unlocked</span>
+    <span class="blink">_</span>
+  </div>
+
+  <div id="term-modal" class="term-modal">
+    <div class="term-modal-inner">
+      <div class="term-modal-head">
+        <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+        <span class="t-title">root@gibson.sh</span>
+        <button class="t-close">✕</button>
+      </div>
+      <div class="term-modal-body"></div>
+      <div class="term-input-wrap">
+        <span class="p">root@gibson:~$</span>
+        <input type="text" id="term-input" autocomplete="off" spellcheck="false" />
+        <span class="caret">_</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/cursor.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/matrix-rain.js"></script>
+  <script src="js/fx.js"></script>
+  <script src="js/mode.js"></script>
+  <script src="js/glitch.js"></script>
+  <script src="js/vfs.js"></script>
+  <script src="js/chip.js"></script>
+  <script src="js/ctf.js"></script>
+  <script src="js/xp.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/voight-kampff.js"></script>
+  <script src="js/ai-chat.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/easter-eggs.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.MMC_SOUND) { MMC_SOUND.init(); setTimeout(() => MMC_SOUND.presets.success(), 500); }
+      if (window.MMC_MATRIX) MMC_MATRIX.start();
+      if (window.MMC_GLITCH) MMC_GLITCH.initGlitchText();
+      if (window.MMC_XP) MMC_XP.init();
+      if (window.MMC_TERM) MMC_TERM.init();
+      if (window.MMC_EASTER) MMC_EASTER.init();
+      if (window.MMC_ACHIEVEMENTS) {
+        setTimeout(() => MMC_ACHIEVEMENTS.unlock("GIBSON_FOUND", "You infiltrated The Gibson. True geek certified."), 800);
+      }
+      if (window.MMC_XP) setTimeout(() => MMC_XP.gain(500, "Gibson reached"), 1000);
+    });
+  </script>
+</body>
+</html>

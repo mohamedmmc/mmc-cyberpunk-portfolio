@@ -1,0 +1,26 @@
+{
+  "name": "Mohamed Melek Chtourou — Portfolio",
+  "short_name": "MMC Portfolio",
+  "description": "Ingénieur Flutter & Node.js. 3 apps en production. Disponible pour missions freelance et CDI.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05060c",
+  "theme_color": "#05060c",
+  "lang": "fr",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/img/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/img/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "business", "productivity"]
+}

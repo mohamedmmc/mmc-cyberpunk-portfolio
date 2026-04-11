@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Hidden reward page — only reachable by solving the on-site CTF
+Disallow: /gibson.html
+
+Sitemap: https://cyber-cv.mohamedmelekchtourou.com/sitemap.xml
+
+# ═══════════════════════════════════════════════════════
+# Mohamed Melek Chtourou — Ingénieur Flutter & Node.js
+# Portfolio + live projects + hidden CTF challenge
+# contact@mohamedmelekchtourou.com — available for missions
+#
+# Curious human? Press / on the site to open the terminal.
+# There's a 5-step CTF with a friendly (and stupid) AI guide.
+# ═══════════════════════════════════════════════════════

@@ -1,0 +1,16 @@
+name = "mmc-feed"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# KV binding (ring buffer of last ~200 events)
+# Create with:  wrangler kv:namespace create MMC
+# Then paste the id below.
+[[kv_namespaces]]
+binding = "MMC"
+id = "acf7854018d340ecbefcda58be3b3386"
+
+# Optional: shared-secret token for POST /track
+# Set with:  wrangler secret put INGEST_TOKEN
+# (leave empty = anyone can POST — fine if you rate-limit via Cloudflare)
+# [vars]
+# INGEST_TOKEN = ""

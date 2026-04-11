@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artisan D'art - Portfolio Complet de la Plateforme</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #1E293B;
+    background: #fff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ========================================= */
+  /* COVER PAGE */
+  /* ========================================= */
+  .cover {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1C2434 0%, #0C2B4E 50%, #1C2434 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    padding: 3rem 2rem;
+    page-break-after: always;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4A86C' fill-opacity='0.05'%3E%3Cpath d='M50 50c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10s-10-4.477-10-10 4.477-10 10-10zM10 10c0-5.523 4.477-10 10-10s10 4.477 10 10-4.477 10-10 10c0 5.523-4.477 10-10 10S0 25.523 0 20s4.477-10 10-10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  /* Golden top border accent */
+  .cover::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #D4A86C, transparent);
+  }
+
+  .cover-logo {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    object-fit: contain;
+    border-radius: 1rem;
+  }
+
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover h1 .accent {
+    color: #D4A86C;
+  }
+
+  .cover .subtitle {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .cover .tagline {
+    font-size: 1.125rem;
+    color: rgba(255,255,255,0.85);
+    max-width: 600px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 3rem;
+  }
+
+  .cover-badges {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cover-badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(212, 168, 108, 0.3);
+    border-radius: 0.75rem;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .cover-badge .number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #D4A86C;
+    display: block;
+  }
+
+  .cover-badge .label {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+
+  .cover-footer {
+    position: absolute;
+    bottom: 2rem;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.4);
+    z-index: 1;
+  }
+
+  /* ========================================= */
+  /* SECTION PAGES */
+  /* ========================================= */
+  .page {
+    padding: 3rem 4rem;
+    page-break-after: always;
+    min-height: 100vh;
+  }
+
+  .page:last-child {
+    page-break-after: avoid;
+  }
+
+  .section-label {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #A07830;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+
+  .section-subtitle {
+    font-size: 1rem;
+    color: #64748B;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #A07830, #D4A86C);
+    border-radius: 2px;
+    margin-bottom: 2rem;
+  }
+
+  /* ========================================= */
+  /* CARDS & GRIDS */
+  /* ========================================= */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .card {
+    background: #fff;
+    border: 1px solid #E2E8F0;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    transition: box-shadow 0.2s;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .card-icon.purple { background: #EDE9FE; color: #7C3AED; }
+  .card-icon.blue { background: #DBEAFE; color: #2563EB; }
+  .card-icon.green { background: #D1FAE5; color: #059669; }
+  .card-icon.amber { background: #FEF3C7; color: #D97706; }
+  .card-icon.red { background: #FEE2E2; color: #DC2626; }
+  .card-icon.cyan { background: #CFFAFE; color: #0891B2; }
+  .card-icon.navy { background: #E8EFF7; color: #0C2B4E; }
+  .card-icon.gold { background: #FEF3C7; color: #A07830; }
+  .card-icon.pink { background: #FCE7F3; color: #DB2777; }
+
+  .card h4 {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    margin-bottom: 0.375rem;
+    color: #1E293B;
+  }
+
+  .card p {
+    font-size: 0.8125rem;
+    color: #64748B;
+    line-height: 1.5;
+  }
+
+  /* ========================================= */
+  /* FEATURE LIST */
+  /* ========================================= */
+  .feature-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .feature-list li {
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+    color: #334155;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+  }
+
+  .feature-list li::before {
+    content: '✓';
+    color: #A07830;
+    font-weight: 700;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    background: #FEF3C7;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6875rem;
+    margin-top: 2px;
+  }
+
+  /* ========================================= */
+  /* TECH STACK */
+  /* ========================================= */
+  .tech-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.875rem;
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #475569;
+    margin: 0.25rem;
+  }
+
+  /* ========================================= */
+  /* TABLE */
+  /* ========================================= */
+  .data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    border: 1px solid #E2E8F0;
+    margin-bottom: 2rem;
+    font-size: 0.8125rem;
+  }
+
+  .data-table thead th {
+    background: #F8FAFC;
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #475569;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #E2E8F0;
+  }
+
+  .data-table td {
+    padding: 0.625rem 1rem;
+    border-bottom: 1px solid #F1F5F9;
+    color: #334155;
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .check { color: #10B981; font-weight: 700; }
+  .cross { color: #EF4444; font-weight: 700; }
+
+  /* ========================================= */
+  /* ARCHITECTURE DIAGRAM */
+  /* ========================================= */
+  .arch-box {
+    background: linear-gradient(135deg, #F8FAFC 0%, #FEF9EE 100%);
+    border: 1px solid #EDE8DA;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .arch-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .arch-node {
+    background: #fff;
+    border: 2px solid #0C2B4E;
+    border-radius: 0.75rem;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #1E293B;
+    min-width: 150px;
+  }
+
+  .arch-node.primary {
+    background: #0C2B4E;
+    color: #fff;
+    border-color: #0C2B4E;
+  }
+
+  .arch-node.secondary {
+    background: #10B981;
+    color: #fff;
+    border-color: #10B981;
+  }
+
+  .arch-arrow {
+    font-size: 1.5rem;
+    color: #94A3B8;
+  }
+
+  /* ========================================= */
+  /* STAT HIGHLIGHT */
+  /* ========================================= */
+  .stat-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-item {
+    flex: 1;
+    background: linear-gradient(135deg, #0C2B4E 0%, #1A4A6B 100%);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    color: #fff;
+    text-align: center;
+  }
+
+  .stat-item.green { background: linear-gradient(135deg, #10B981, #059669); }
+  .stat-item.amber { background: linear-gradient(135deg, #F59E0B, #D97706); }
+  .stat-item.blue { background: linear-gradient(135deg, #0EA5E9, #0284C7); }
+
+  .stat-item .stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .stat-item .stat-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0.85;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ========================================= */
+  /* API ENDPOINT STYLING */
+  /* ========================================= */
+  .endpoint-group {
+    margin-bottom: 1.5rem;
+  }
+
+  .endpoint-group h4 {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #1E293B;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.375rem;
+    border-bottom: 1px solid #E2E8F0;
+  }
+
+  .endpoint {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0;
+    font-size: 0.75rem;
+  }
+
+  .method {
+    padding: 0.125rem 0.5rem;
+    border-radius: 0.25rem;
+    font-weight: 700;
+    font-size: 0.625rem;
+    min-width: 40px;
+    text-align: center;
+    color: #fff;
+  }
+
+  .method.get { background: #10B981; }
+  .method.post { background: #3B82F6; }
+  .method.put { background: #F59E0B; }
+  .method.delete { background: #EF4444; }
+  .method.patch { background: #1A4A6B; }
+
+  .endpoint-path {
+    font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    color: #475569;
+    font-size: 0.6875rem;
+  }
+
+  /* ========================================= */
+  /* CTA / CONTACT */
+  /* ========================================= */
+  .cta-section {
+    background: linear-gradient(135deg, #1C2434 0%, #0C2B4E 100%);
+    border-radius: 1rem;
+    padding: 3rem;
+    text-align: center;
+    color: #fff;
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #D4A86C, transparent);
+  }
+
+  .cta-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .cta-section p {
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    padding: 0.875rem 2.5rem;
+    background: #D4A86C;
+    color: #1C2434;
+    border-radius: 0.5rem;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  /* Print styles */
+  @media print {
+    .page { page-break-after: always; }
+    .page:last-child { page-break-after: avoid; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .card:hover { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- PAGE 1: COVER -->
+<!-- ============================================ -->
+<div class="cover">
+  <img src="admin-dashboard/public/logo.png" alt="Artisan D'art" class="cover-logo" onerror="this.style.display='none'">
+  <h1>Artisan <span class="accent">D'art</span></h1>
+  <div class="subtitle">Plateforme Numérique pour l'Excellence Artisanale</div>
+  <p class="tagline">
+    Un écosystème complet connectant les artisans traditionnels aux consommateurs modernes.
+    Comprenant une application iOS native, un puissant tableau de bord d'administration et un backend API robuste &mdash;
+    tous conçus pour préserver et promouvoir le savoir-faire artisanal.
+  </p>
+  <div class="cover-badges">
+    <div class="cover-badge">
+      <span class="number">3</span>
+      <span class="label">Plateformes</span>
+    </div>
+    <div class="cover-badge">
+      <span class="number">60+</span>
+      <span class="label">Endpoints API</span>
+    </div>
+    <div class="cover-badge">
+      <span class="number">2</span>
+      <span class="label">Langues</span>
+    </div>
+    <div class="cover-badge">
+      <span class="number">15+</span>
+      <span class="label">Modèles de Données</span>
+    </div>
+  </div>
+  <div class="cover-footer">Artisan D'art &mdash; Portfolio de Plateforme Full-Stack &mdash; 2024</div>
+</div>
+
+<!-- ============================================ -->
+<!-- PAGE 2: EXECUTIVE SUMMARY -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="section-label">Résumé Exécutif</div>
+  <div class="section-title">Qu'est-ce qu'Artisan D'art ?</div>
+  <div class="divider"></div>
+  <div class="section-subtitle">
+    Artisan D'art est une marketplace numérique full-stack qui relie l'artisanat traditionnel à la technologie moderne,
+    permettant aux artisans de présenter leur travail, gérer leur activité et se connecter avec des clients du monde entier.
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-item">
+      <div class="stat-number">iOS</div>
+      <div class="stat-label">Application Mobile Native</div>
+    </div>
+    <div class="stat-item green">
+      <div class="stat-number">React</div>
+      <div class="stat-label">Tableau de Bord Admin</div>
+    </div>
+    <div class="stat-item amber">
+      <div class="stat-number">Node.js</div>
+      <div class="stat-label">Backend REST API</div>
+    </div>
+    <div class="stat-item blue">
+      <div class="stat-number">MySQL</div>
+      <div class="stat-label">Base de Données Relationnelle</div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: #1E293B;">Aperçu de la Plateforme</h3>
+
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-icon gold">📱</div>
+      <h4>Application iOS Mobile</h4>
+      <p>Application SwiftUI native permettant aux clients et aux artisans de parcourir, découvrir, acheter et gérer des produits artisanaux.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon green">🖥️</div>
+      <h4>Tableau de Bord Admin</h4>
+      <p>Panneau de contrôle basé sur React pour les administrateurs gérant les artisans, articles, catégories, badges, événements, utilisateurs, rapports et demandes.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon blue">⚡</div>
+      <h4>Backend REST API</h4>
+      <p>API Node.js/Express alimentant les deux plateformes avec 60+ endpoints, authentification JWT, téléchargements de fichiers, notifications push et géolocalisation.</p>
+    </div>
+  </div>
+
+  <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: #1E293B;">Proposition de Valeur Principale</h3>
+  <div class="grid-2">
+    <div>
+      <ul class="feature-list">
+        <li>Marketplace complète pour les produits artisanaux faits main</li>
+        <li>Découverte d'artisans par géolocalisation avec des cartes interactives</li>
+        <li>Système multi-rôles : Utilisateurs, Artisans, Admins</li>
+        <li>Support bilingue (Anglais &amp; Français)</li>
+        <li>Notifications push en temps réel via Firebase</li>
+      </ul>
+    </div>
+    <div>
+      <ul class="feature-list">
+        <li>Système d'avis, de notation et d'engagement social</li>
+        <li>Gestion d'événements avec intégration de calendrier</li>
+        <li>Modération admin et flux d'approbation</li>
+        <li>Système de badges et de vérification pour la confiance</li>
+        <li>Tableau de bord analytique complet</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- PAGE 3: SYSTEM ARCHITECTURE -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="section-label">Architecture</div>
+  <div class="section-title">Architecture Système</div>
+  <div class="divider"></div>
+  <div class="section-subtitle">
+    Une architecture moderne à trois niveaux conçue pour la scalabilité, la maintenabilité et la performance.
+  </div>
+
+  <div class="arch-box">
+    <div class="arch-flow">
+      <div class="arch-node primary">📱 iOS App<br><small style="font-weight:400;font-size:0.7rem">SwiftUI + MVVM</small></div>
+      <div class="arch-arrow">⟷</div>
+      <div class="arch-node secondary">⚡ REST API<br><small style="font-weight:400;font-size:0.7rem">Node.js + Express</small></div>
+      <div class="arch-arrow">⟷</div>
+      <div class="arch-node">🗄️ MySQL<br><small style="font-weight:400;font-size:0.7rem">Sequelize ORM</small></div>
+    </div>
+    <br>
+    <div class="arch-flow">
+      <div class="arch-node primary">🖥️ Admin Dashboard<br><small style="font-weight:400;font-size:0.7rem">React + CoreUI</small></div>
+      <div class="arch-arrow">⟷</div>
+      <div class="arch-node secondary">⚡ REST API<br><small style="font-weight:400;font-size:0.7rem">Node.js + Express</small></div>
+      <div class="arch-arrow">⟷</div>
+      <div class="arch-node">📁 File Storage<br><small style="font-weight:400;font-size:0.7rem">/uploads</small></div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: #1E293B;">Stack Technologique</h3>
+
+  <div class="grid-3" style="margin-bottom: 2rem;">
+    <div class="card">
+      <h4 style="color: #A07830; margin-bottom: 0.75rem;">📱 Application iOS</h4>
+      <div>
+        <span class="tech-badge">Swift 5</span>
+        <span class="tech-badge">SwiftUI</span>
+        <span class="tech-badge">MVVM</span>
+        <span class="tech-badge">Coordinator Pattern</span>
+        <span class="tech-badge">MapKit</span>
+        <span class="tech-badge">Kingfisher</span>
+        <span class="tech-badge">Lottie</span>
+        <span class="tech-badge">Firebase FCM</span>
+        <span class="tech-badge">CoreLocation</span>
+      </div>
+    </div>
+    <div class="card">
+      <h4 style="color: #10B981; margin-bottom: 0.75rem;">🖥️ Tableau de Bord Admin</h4>
+      <div>
+        <span class="tech-badge">React 18</span>
+        <span class="tech-badge">CoreUI 4</span>
+        <span class="tech-badge">Redux</span>
+        <span class="tech-badge">SCSS</span>
+        <span class="tech-badge">Chart.js</span>
+        <span class="tech-badge">Leaflet Maps</span>
+        <span class="tech-badge">i18next</span>
+        <span class="tech-badge">Axios</span>
+        <span class="tech-badge">React Router 6</span>
+      </div>
+    </div>
+    <div class="card">
+      <h4 style="color: #F59E0B; margin-bottom: 0.75rem;">⚡ Backend API</h4>
+      <div>
+        <span class="tech-badge">Node.js</span>
+        <span class="tech-badge">Express.js</span>
+        <span class="tech-badge">Sequelize ORM</span>
+        <span class="tech-badge">MySQL</span>
+        <span class="tech-badge">JWT Auth</span>
+        <span class="tech-badge">Multer</span>
+        <span class="tech-badge">Nodemailer</span>
+        <span class="tech-badge">Firebase Admin</span>
+        <span class="tech-badge">Twilio SMS</span>
+        <span class="tech-badge">Cron Jobs</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: #1E293B;">Aperçu du Modèle de Données</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Entité</th>
+        <th>Champs Clés</th>
+        <th>Relations</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>User</strong></td><td>name, email, phone, password, picture, role, verified</td><td>→ Artisan, Comments, Ratings, Favorites, Subscriptions</td></tr>
+      <tr><td><strong>Artisan</strong></td><td>type, verified, archived, lat/lng, location, badge</td><td>→ User, Articles, Gallery, Subscribers, Badge</td></tr>
+      <tr><td><strong>Article</strong></td><td>name (FR/EN), description (FR/EN), price, promotion</td><td>→ Artisan, Category, Comments, Ratings, Gallery</td></tr>
+      <tr><td><strong>Category</strong></td><td>title (FR/EN), image</td><td>→ Articles</td></tr>
+      <tr><td><strong>Badge</strong></td><td>title (FR/EN), description (FR/EN), picture</td><td>→ Artisans</td></tr>
+      <tr><td><strong>Event</strong></td><td>title (FR/EN), dates, description (FR/EN), location, lat/lng</td><td>→ Gallery, Calendar</td></tr>
+      <tr><td><strong>Request</strong></td><td>type, status (pending/success/refused/canceled)</td><td>→ User, Article</td></tr>
+      <tr><td><strong>Report</strong></td><td>status (handled/unhandled)</td><td>→ Reporter, Comment, Artisan</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ============================================ -->
+<!-- PAGE 4: iOS APP FEATURES -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="section-label">Application Mobile</div>
+  <div class="section-title">Application iOS &mdash; Expérience Utilisateur</div>
+  <div class="divider"></div>
+  <div class="section-subtitle">
+    Une application SwiftUI native offrant une expérience premium et fluide pour découvrir les artisans et leur savoir-faire.
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-icon gold">🔐</div>
+      <h4>Authentification &amp; Compte</h4>
+      <ul class="feature-list">
+        <li>Connexion email/téléphone avec tokens JWT</li>
+        <li>Inscription avec téléchargement de photo de profil</li>
+        <li>Vérification email par OTP</li>
+        <li>Mot de passe oublié par SMS OTP (Twilio)</li>
+        <li>Flux de réinitialisation du mot de passe</li>
+        <li>Gestion de session &amp; déconnexion automatique</li>
+        <li>Mise à niveau du compte (Utilisateur → Artisan)</li>
+        <li>Archivage/suppression du compte</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon green">🔍</div>
+      <h4>Découverte &amp; Recherche</h4>
+      <ul class="feature-list">
+        <li>Recherche globale d'articles &amp; d'artisans</li>
+        <li>Filtrage avancé par catégorie</li>
+        <li>Filtrage par type d'artisan (Artisan/Boutique)</li>
+        <li>Filtrage par fourchette de prix (min/max)</li>
+        <li>Découverte des artisans proches par géolocalisation</li>
+        <li>Filtrage par distance</li>
+        <li>Pagination avec défilement infini</li>
+        <li>Résultats de recherche en temps réel</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon blue">🛍️</div>
+      <h4>Navigation des Articles</h4>
+      <ul class="feature-list">
+        <li>Articles en vedette/populaires en page d'accueil</li>
+        <li>Sections les plus vues, récentes, mieux notées</li>
+        <li>Carrousel de galerie d'images avec pagination</li>
+        <li>Affichage des prix avec badges de promotion</li>
+        <li>Système de notation par étoiles (1-5 étoiles)</li>
+        <li>Section commentaires et avis</li>
+        <li>Fonctionnalité favoris/liste de souhaits</li>
+        <li>Suivi du nombre de vues</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon amber">👤</div>
+      <h4>Profils d'Artisans</h4>
+      <ul class="feature-list">
+        <li>Profils d'artisans enrichis avec galeries</li>
+        <li>Carte montrant la localisation de l'artisan</li>
+        <li>S'abonner/suivre des artisans</li>
+        <li>Voir le catalogue de produits de l'artisan</li>
+        <li>Signaler les profils inappropriés</li>
+        <li>Affichage des informations de contact</li>
+        <li>Compteur d'abonnés</li>
+        <li>Affichage du badge de vérification</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon cyan">📅</div>
+      <h4>Événements &amp; Calendrier</h4>
+      <ul class="feature-list">
+        <li>Parcourir les événements à venir &amp; passés</li>
+        <li>Détails de l'événement avec galerie d'images</li>
+        <li>Ajouter des événements au calendrier personnel</li>
+        <li>Affichage de la localisation et de la distance</li>
+        <li>Informations de date/heure</li>
+        <li>Abonnements aux notifications push Firebase</li>
+        <li>Rechercher des événements par titre ou localisation</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-icon pink">⚙️</div>
+      <h4>Paramètres &amp; Préférences</h4>
+      <ul class="feature-list">
+        <li>Modification du profil (nom, photo)</li>
+        <li>Basculement du mode sombre</li>
+        <li>Sélection de la langue (EN/FR)</li>
+        <li>Gestion des notifications push</li>
+        <li>Demande de mise à niveau du compte</li>
+        <li>Sections à propos &amp; aide</li>
+        <li>Options d'accessibilité</li>
+        <li>Déconnexion sécurisée</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: #1E293B;">Fonctionnalités Réservées aux Artisans (Après Mise à Niveau du Compte)</h3>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-icon navy">📦</div>
+      <h4>Gestion des Articles</h4>
+      <p>Formulaire multi-étapes pour ajouter des articles avec des noms et descriptions bilingues, des galeries (jusqu'à 5 images), les prix, la catégorie et les promotions.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon amber">✏️</div>
+      <h4>Modifier &amp; Archiver</h4>
+      <p>Mettre à jour les articles existants, changer les photos, ajuster les promotions et les prix, ou archiver les articles qui ne sont plus disponibles.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon green">📊</div>
+      <h4>Statistiques</h4>
+      <p>Suivre les vues d'articles, les notations et les métriques d'engagement pour comprendre l'intérêt des clients et optimiser les offres.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- PAGE 5: ADMIN DASHBOARD FEATURES -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="section-label">Administration</div>
+  <div class="section-title">Tableau de Bord Admin &mdash; Centre de Contrôle</div>
+  <div class="divider"></div>
+  <div class="section-subtitle">
+    Un panneau d'administration premium basé sur React offrant un contrôle complet sur l'ensemble de la plateforme avec des analyses, de la modération de contenu et de la gestion des utilisateurs.
+  </div>
+
+  <div class="grid-4">
+    <div class="card">
+      <div class="card-icon gold">📊</div>
+      <h4>Tableau de Bord Analytique</h4>
+      <p>Bannière d'accueil, cartes de statistiques, graphiques linéaires, graphiques en anneau, tableau des artisans récents, répartitions par catégorie.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon green">👨‍🎨</div>
+      <h4>CRUD Artisans</h4>
+      <p>Créer, voir, mettre à jour des artisans avec sélecteur de localisation sur carte, téléchargements de galerie et attribution de badges.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon blue">📝</div>
+      <h4>CRUD Articles</h4>
+      <p>Gestion complète des articles avec contenu bilingue, prix, promotions, catégories et galeries d'images.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon amber">🏷️</div>
+      <h4>CRUD Catégories</h4>
+      <p>Créer et gérer des catégories de produits avec des titres bilingues et des images.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon red">🏅</div>
+      <h4>Système de Badges</h4>
+      <p>Créer des badges avec des titres/descriptions bilingues, attribuer aux artisans de confiance.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon cyan">📅</div>
+      <h4>Gestion des Événements</h4>
+      <p>Créer des événements avec des dates, des localisations, l'intégration de cartes, des galeries et du contenu bilingue.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon navy">📋</div>
+      <h4>Flux de Demandes</h4>
+      <p>Examiner et approuver/refuser les demandes de mise à niveau des utilisateurs et les soumissions d'articles.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon pink">🚩</div>
+      <h4>Modération du Contenu</h4>
+      <p>Examiner les rapports, marquer comme traité, supprimer les commentaires inappropriés, gérer la sécurité des utilisateurs.</p>
+    </div>
+  </div>
+
+  <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: #1E293B;">Matrice des Opérations CRUD</h3>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Entité</th>
+        <th>Créer</th>
+        <th>Lire</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
+        <th>Archiver</th>
+        <th>Vérifier</th>
+        <th>Rechercher</th>
+        <th>Filtrer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Artisans</strong></td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+      <tr><td><strong>Articles</strong></td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td></tr>
+      <tr><td><strong>Catégories</strong></td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td></tr>
+      <tr><td><strong>Badges</strong></td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td></tr>
+      <tr><td><strong>Événements</strong></td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td></tr>
+      <tr><td><strong>Utilisateurs</strong></td><td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td></tr>
+      <tr><td><strong>Rapports</strong></td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td></tr>
+      <tr><td><strong>Demandes</strong></td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: #1E293B;">Fonctionnalités du Tableau de Bord</h3>
+  <div class="grid-2">
+    <ul class="feature-list">
+      <li>Authentification admin basée sur les tokens</li>
+      <li>Support multi-comptes administrateurs</li>
+      <li>Design responsive (mobile &amp; bureau)</li>
+      <li>Sélecteur de langue (EN/FR)</li>
+      <li>États de chargement skeleton</li>
+    </ul>
+    <ul class="feature-list">
+      <li>Recherche anti-rebond (délai de 2s)</li>
+      <li>Pagination sur toutes les listes</li>
+      <li>Téléchargement d'images avec aperçu</li>
+      <li>Intégration de carte Leaflet</li>
+      <li>Boîtes de dialogue de confirmation pour les actions</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- PAGE 6: API BACKEND -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="section-label">Backend</div>
+  <div class="section-title">Backend API &mdash; 60+ Endpoints</div>
+  <div class="divider"></div>
+  <div class="section-subtitle">
+    Une API REST Node.js/Express robuste avec authentification JWT, contrôle d'accès basé sur les rôles, téléchargements de fichiers, notifications push et gestion complète des données.
+  </div>
+
+  <div class="grid-2">
+    <div>
+      <div class="endpoint-group">
+        <h4>🔐 Authentification (8 endpoints)</h4>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/users/signup</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/users/login</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/users/send-otp</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/users/verify-otp</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/users/change-forgot-password</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/users/verify/:code/:id</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/users/resend-verification</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/admin/login</span></div>
+      </div>
+      <div class="endpoint-group">
+        <h4>👨‍🎨 Artisans (8 endpoints)</h4>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/artisans/</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/artisans/profile/:id</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/artisans/</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/artisans/:id</span></div>
+        <div class="endpoint"><span class="method put">PUT</span><span class="endpoint-path">/api/artisans/v1/admin-update/:id</span></div>
+        <div class="endpoint"><span class="method put">PUT</span><span class="endpoint-path">/api/artisans/:id</span></div>
+        <div class="endpoint"><span class="method put">PUT</span><span class="endpoint-path">/api/artisans/:id/:badge_id</span></div>
+        <div class="endpoint"><span class="method patch">PATCH</span><span class="endpoint-path">/api/artisans/:id (revoke badge)</span></div>
+      </div>
+      <div class="endpoint-group">
+        <h4>📝 Articles (15 endpoints)</h4>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/articles/v1/create-by-admin</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/articles/home-page</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/articles/most-viewed</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/articles/most-recent</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/articles/top-rated</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/articles/top-promoted</span></div>
+        <div class="endpoint"><span class="method put">PUT</span><span class="endpoint-path">/api/articles/:id/update</span></div>
+        <div class="endpoint"><span class="method delete">DEL</span><span class="endpoint-path">/api/articles/:id</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="endpoint-group">
+        <h4>📅 Événements (7 endpoints)</h4>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/events/create</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/events/all</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/events/findAll</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/events/:id</span></div>
+        <div class="endpoint"><span class="method put">PUT</span><span class="endpoint-path">/api/events/:id</span></div>
+        <div class="endpoint"><span class="method delete">DEL</span><span class="endpoint-path">/api/events/:id</span></div>
+      </div>
+      <div class="endpoint-group">
+        <h4>⭐ Social (Notations, Commentaires, Favoris)</h4>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/ratings/:articleId/</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/comments/:articleId/</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/favorites/:articleId/</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/subscribers/</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/calendars/</span></div>
+      </div>
+      <div class="endpoint-group">
+        <h4>🚩 Modération (Rapports &amp; Demandes)</h4>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/reports/</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/reports/</span></div>
+        <div class="endpoint"><span class="method patch">PATCH</span><span class="endpoint-path">/api/reports/:id</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/requests/create</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/requests/response</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/requests/</span></div>
+      </div>
+      <div class="endpoint-group">
+        <h4>🏷️ Catégories &amp; Badges</h4>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/categories/create-new</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/categories/v1/all</span></div>
+        <div class="endpoint"><span class="method put">PUT</span><span class="endpoint-path">/api/categories/v1/:id</span></div>
+        <div class="endpoint"><span class="method post">POST</span><span class="endpoint-path">/api/badges/v1/create</span></div>
+        <div class="endpoint"><span class="method get">GET</span><span class="endpoint-path">/api/badges/</span></div>
+        <div class="endpoint"><span class="method put">PUT</span><span class="endpoint-path">/api/badges/:id</span></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; margin-top: 1rem; color: #1E293B;">Capacités du Backend</h3>
+  <div class="grid-4">
+    <div class="card">
+      <h4>🔑 Sécurité</h4>
+      <p>Tokens JWT, hachage BCrypt, middleware basé sur les rôles, CORS</p>
+    </div>
+    <div class="card">
+      <h4>📧 Email</h4>
+      <p>Nodemailer SMTP, codes de vérification, emails de réinitialisation de mot de passe</p>
+    </div>
+    <div class="card">
+      <h4>📲 SMS &amp; Push</h4>
+      <p>OTP Twilio, Firebase Cloud Messaging, abonnements aux sujets</p>
+    </div>
+    <div class="card">
+      <h4>⏰ Tâches Planifiées</h4>
+      <p>Rappels d'événements planifiés, vérification quotidienne à 10h UTC</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- PAGE 7: KEY DIFFERENTIATORS & CLOSING -->
+<!-- ============================================ -->
+<div class="page">
+  <div class="section-label">Pourquoi Artisan D'art</div>
+  <div class="section-title">Différenciateurs Clés</div>
+  <div class="divider"></div>
+  <div class="section-subtitle">
+    Ce qui fait d'Artisan D'art une plateforme premium, prête pour la production.
+  </div>
+
+  <div class="grid-2" style="margin-bottom: 2rem;">
+    <div class="card" style="border-left: 4px solid #D4A86C;">
+      <h4>🌍 Support Bilingue Complet</h4>
+      <p>Chaque contenu &mdash; articles, catégories, badges, événements &mdash; supporte le français et l'anglais avec un basculement de langue fluide sur iOS et le tableau de bord admin.</p>
+    </div>
+    <div class="card" style="border-left: 4px solid #10B981;">
+      <h4>📍 Découverte par Géolocalisation</h4>
+      <p>Cartes interactives avec Leaflet (admin) et MapKit (iOS), géocodage Nominatim, filtrage par distance et découverte d'artisans sensible à la localisation.</p>
+    </div>
+    <div class="card" style="border-left: 4px solid #F59E0B;">
+      <h4>🔄 Flux d'Approbation</h4>
+      <p>Système complet de demande/approbation : les utilisateurs demandent le statut d'artisan, les artisans demandent la publication d'articles, les admins examinent et approuvent/refusent avec un audit complet.</p>
+    </div>
+    <div class="card" style="border-left: 4px solid #EF4444;">
+      <h4>🛡️ Modération du Contenu</h4>
+      <p>Système de signalement pour les commentaires et profils d'artisans, panneau de révision admin, marquer comme traité, supprimer le contenu inapproprié &mdash; gardant la plateforme sûre.</p>
+    </div>
+    <div class="card" style="border-left: 4px solid #A07830;">
+      <h4>🏅 Confiance &amp; Vérification</h4>
+      <p>Système de badges (Maître Artisan, Certifié, Talent Émergent), statut de vérification admin, indicateurs visuels de confiance sur toute la plateforme.</p>
+    </div>
+    <div class="card" style="border-left: 4px solid #0EA5E9;">
+      <h4>🔔 Notifications en Temps Réel</h4>
+      <p>Notifications push Firebase Cloud Messaging, abonnements basés sur des sujets (suivre des artisans, sauvegarder des événements), rappels d'événements quotidiens planifiés via des tâches cron.</p>
+    </div>
+  </div>
+
+  <h3 style="font-size: 1.125rem; font-weight: 700; margin-bottom: 1rem; color: #1E293B;">La Plateforme en Un Coup d'Œil</h3>
+
+  <div class="stat-row">
+    <div class="stat-item">
+      <div class="stat-number">60+</div>
+      <div class="stat-label">Endpoints API</div>
+    </div>
+    <div class="stat-item green">
+      <div class="stat-number">15+</div>
+      <div class="stat-label">Modèles de Données</div>
+    </div>
+    <div class="stat-item amber">
+      <div class="stat-number">30+</div>
+      <div class="stat-label">Écrans</div>
+    </div>
+    <div class="stat-item blue">
+      <div class="stat-number">20+</div>
+      <div class="stat-label">Pages Admin</div>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h3>Prêt à Déployer. Prêt à Scaler.</h3>
+    <p>Artisan D'art est une plateforme complète, prête pour la production, construite avec des technologies modernes, une architecture propre et les meilleures pratiques. De la base de données à l'écran mobile &mdash; chaque couche est conçue avec soin.</p>
+    <br>
+    <div style="font-size: 0.875rem; color: rgba(255,255,255,0.5);">
+      <strong style="color: #D4A86C;">Artisan D'art</strong> &mdash; Là Où la Tradition Rencontre la Technologie
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 2rem; color: #94A3B8; font-size: 0.75rem;">
+    <p>Ce document a été préparé comme une vitrine complète du portfolio de la plateforme Artisan D'art.</p>
+    <p>Tous droits réservés &copy; 2024</p>
+  </div>
+</div>
+
+</body>
+</html>

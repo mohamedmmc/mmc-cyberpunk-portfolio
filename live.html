@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="matrix">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>MMC // LIVE FEED</title>
+  <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;600;800;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:          #03060a;
+      --bg-2:        #060b14;
+      --panel:       rgba(6,10,18,0.88);
+      --border:      rgba(0,240,255,0.35);
+      --text:        #cfe7ef;
+      --text-dim:    #6a8694;
+      --primary:     #00f0ff;
+      --accent:      #00ff7a;
+      --magenta:     #ff2bd6;
+      --danger:      #ff3860;
+      --warn:        #ffcc00;
+      --mono:        "JetBrains Mono", "Share Tech Mono", monospace;
+      --display:     "Orbitron", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: var(--mono); font-size: 14px; min-height: 100vh; }
+    body {
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(0,240,255,0.08), transparent 60%),
+        radial-gradient(ellipse at 80% 100%, rgba(255,43,214,0.06), transparent 60%),
+        var(--bg);
+    }
+
+    header {
+      padding: 20px 28px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: rgba(0,0,0,0.4);
+    }
+    header h1 {
+      font-family: var(--display);
+      font-weight: 900;
+      font-size: 1.4rem;
+      margin: 0;
+      color: var(--primary);
+      text-shadow: 0 0 14px rgba(0,240,255,0.5);
+      letter-spacing: 0.12em;
+    }
+    header .sub {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+    .dot {
+      display: inline-block;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent);
+      margin-right: 6px;
+      animation: pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1 } 50% { opacity: 0.3 } }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .controls input {
+      background: rgba(0,0,0,0.6);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--mono);
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      min-width: 280px;
+      outline: none;
+    }
+    .controls button {
+      background: rgba(0,240,255,0.08);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      font-family: var(--mono);
+      padding: 6px 12px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .controls button:hover { background: rgba(0,240,255,0.18); }
+
+    main {
+      padding: 24px 28px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 14px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .stat-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+    }
+    .stat-card .label {
+      font-size: 0.7rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 6px;
+    }
+    .stat-card .value {
+      font-family: var(--display);
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-shadow: 0 0 8px rgba(0,240,255,0.4);
+    }
+    .stat-card.accent .value { color: var(--accent); text-shadow: 0 0 8px rgba(0,255,122,0.4); }
+    .stat-card.magenta .value { color: var(--magenta); text-shadow: 0 0 8px rgba(255,43,214,0.4); }
+    .stat-card.warn .value { color: var(--warn); text-shadow: 0 0 8px rgba(255,204,0,0.4); }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    @media (max-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      header { padding: 16px 18px 12px; }
+      main { padding: 18px 16px; }
+      .controls {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+      .controls input {
+        min-width: 0;
+        flex: 1 1 100%;
+        width: 100%;
+      }
+      .controls button {
+        flex: 1 1 auto;
+      }
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 16px 18px;
+    }
+    .panel h2 {
+      font-family: var(--display);
+      font-size: 0.95rem;
+      color: var(--primary);
+      margin: 0 0 14px 0;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(0,240,255,0.15);
+      padding-bottom: 8px;
+    }
+
+    .feed {
+      max-height: 540px;
+      overflow-y: auto;
+      font-size: 0.78rem;
+    }
+    .feed::-webkit-scrollbar { width: 6px; }
+    .feed::-webkit-scrollbar-track { background: transparent; }
+    .feed::-webkit-scrollbar-thumb { background: rgba(0,240,255,0.2); }
+
+    .evt {
+      padding: 6px 0;
+      border-bottom: 1px dashed rgba(0,240,255,0.08);
+      display: grid;
+      grid-template-columns: 70px 180px 1fr 60px;
+      gap: 10px;
+      align-items: center;
+    }
+    .evt .time { color: var(--text-dim); }
+    .evt .name {
+      color: var(--primary);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+    .evt .details { color: var(--text); opacity: 0.8; font-size: 0.7rem; }
+    .evt .uid { color: var(--text-dim); font-size: 0.68rem; text-align: right; }
+    .evt.ctf .name { color: var(--accent); }
+    .evt.ach .name { color: var(--magenta); }
+    .evt.terminal .name { color: var(--warn); }
+    .evt.pv .name { color: var(--text); }
+    .evt.err .name { color: var(--danger); }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .list li {
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 0;
+      font-size: 0.8rem;
+      border-bottom: 1px dashed rgba(0,240,255,0.08);
+    }
+    .list li:last-child { border-bottom: none; }
+    .list .k { color: var(--text); }
+    .list .v { color: var(--primary); font-weight: 700; }
+
+    .status {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      margin-top: 10px;
+    }
+    .status.err { color: var(--danger); }
+    .empty {
+      color: var(--text-dim);
+      font-style: italic;
+      padding: 20px 10px;
+      text-align: center;
+    }
+    .scroll { max-height: 320px; overflow-y: auto; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1><span class="dot"></span>MMC // LIVE FEED</h1>
+    <div class="sub" id="status-line">connecting...</div>
+  </div>
+  <div class="controls">
+    <input id="endpoint" placeholder="https://mmc-feed.xxx.workers.dev" />
+    <button id="connect-btn">CONNECT</button>
+    <button id="pause-btn">PAUSE</button>
+  </div>
+</header>
+
+<main>
+  <div class="stat-grid">
+    <div class="stat-card">           <div class="label">Total events</div>           <div class="value" id="s-total">—</div> </div>
+    <div class="stat-card accent">    <div class="label">Unique visitors</div>        <div class="value" id="s-uids">—</div>  </div>
+    <div class="stat-card">           <div class="label">Sessions</div>               <div class="value" id="s-sessions">—</div></div>
+    <div class="stat-card warn">      <div class="label">Page views</div>             <div class="value" id="s-pv">—</div>    </div>
+    <div class="stat-card magenta">   <div class="label">Terminal opens</div>         <div class="value" id="s-term">—</div>  </div>
+    <div class="stat-card">           <div class="label">CTF starts</div>             <div class="value" id="s-ctfstart">—</div></div>
+    <div class="stat-card accent">    <div class="label">CTF solves</div>             <div class="value" id="s-ctfsolve">—</div></div>
+    <div class="stat-card magenta">   <div class="label">Elite solves</div>           <div class="value" id="s-elite">—</div> </div>
+    <div class="stat-card">           <div class="label">Events last 5m</div>         <div class="value" id="s-5m">—</div>    </div>
+    <div class="stat-card accent">    <div class="label">Events last 1h</div>         <div class="value" id="s-1h">—</div>    </div>
+  </div>
+
+  <div class="grid-2">
+    <section class="panel">
+      <h2>▶ Live event stream</h2>
+      <div class="feed" id="feed"><div class="empty">Waiting for events...</div></div>
+    </section>
+    <aside>
+      <section class="panel" style="margin-bottom:16px;">
+        <h2>Top events</h2>
+        <ul class="list scroll" id="top-events"><li class="empty">—</li></ul>
+      </section>
+      <section class="panel">
+        <h2>Countries</h2>
+        <ul class="list scroll" id="countries"><li class="empty">—</li></ul>
+      </section>
+    </aside>
+  </div>
+</main>
+
+<script>
+(() => {
+  const LS_KEY = "mmc_live_endpoint";
+  const endpointInput = document.getElementById("endpoint");
+  const connectBtn = document.getElementById("connect-btn");
+  const pauseBtn = document.getElementById("pause-btn");
+  const statusLine = document.getElementById("status-line");
+
+  endpointInput.value = localStorage.getItem(LS_KEY) || "";
+
+  let pollTimer = null;
+  let paused = false;
+  let seenIds = new Set();
+  let lastOk = 0;
+
+  const fmtTime = (ts) => {
+    if (!ts) return "--:--:--";
+    const d = new Date(ts);
+    return d.toTimeString().slice(0, 8);
+  };
+
+  const CLASS_MAP = {
+    terminal_open: "terminal",
+    terminal_command: "terminal",
+    terminal_command_unknown: "terminal",
+    ctf_start: "ctf",
+    ctf_step_reached: "ctf",
+    ctf_solved: "ctf",
+    ctf_elite_start: "ctf",
+    ctf_elite_step: "ctf",
+    ctf_elite_solved: "ctf",
+    achievement_unlocked: "ach",
+    xp_gained: "ach",
+    level_up: "ach",
+    page_view_enriched: "pv"
+  };
+
+  const DETAIL_MAP = {
+    terminal_command: (e) => e.cmd_name || e.cmd_raw || "",
+    terminal_command_unknown: (e) => e.cmd_raw || "",
+    terminal_open: (e) => e.trigger || "",
+    ctf_start: (e) => e.ctf_mode || "",
+    ctf_step_reached: (e) => "step " + (e.step ?? "?"),
+    ctf_solved: (e) => e.time_to_solve_s + "s",
+    ctf_elite_step: (e) => "step " + e.step + (e.correct ? " ✓" : " ✗"),
+    ctf_elite_solved: (e) => e.time_to_solve_s + "s",
+    achievement_unlocked: (e) => e.achievement_id + " [" + (e.tier || "common") + "]",
+    xp_gained: (e) => "+" + (e.amount || 0) + " " + (e.reason || ""),
+    level_up: (e) => "L" + e.from_level + " → L" + e.to_level + " (" + (e.title || "") + ")",
+    ctf_hint_requested: (e) => "step " + e.step + " h" + e.hint_level,
+    page_view_enriched: (e) => e.page || "",
+    section_view: (e) => e.section || "",
+    project_clicked: (e) => e.project || "",
+    contact_cta_clicked: (e) => e.location || "",
+    game_started: (e) => e.game || "",
+    game_ended: (e) => (e.game || "") + " " + (e.score || 0) + "pts " + (e.duration_s || 0) + "s",
+    theme_changed: (e) => e.theme || "",
+    mode_changed: (e) => e.mode || "",
+    language_changed: (e) => e.lang || "",
+    easter_egg_triggered: (e) => e.easter_egg || "",
+    voight_kampff_done: (e) => (e.human_score || 0) + "/10",
+    ai_chat_message: (e) => (e.length || 0) + " chars"
+  };
+
+  function renderFeed(items) {
+    const feedEl = document.getElementById("feed");
+    if (!items || items.length === 0) {
+      feedEl.innerHTML = '<div class="empty">No events yet.</div>';
+      return;
+    }
+    const html = items.map((e) => {
+      const cls = CLASS_MAP[e.name] || "";
+      const time = fmtTime(e.server_ts || e.ts);
+      const detail = DETAIL_MAP[e.name] ? DETAIL_MAP[e.name](e) : "";
+      const uid = (e.uid || "").slice(0, 8);
+      const country = e.country ? " · " + e.country : "";
+      return `<div class="evt ${cls}">
+        <span class="time">${time}</span>
+        <span class="name">${e.name}</span>
+        <span class="details">${escape(detail)}${country}</span>
+        <span class="uid">${uid}</span>
+      </div>`;
+    }).join("");
+    feedEl.innerHTML = html;
+  }
+
+  function escape(s) {
+    return String(s || "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  }
+
+  function renderStats(stats) {
+    document.getElementById("s-total").textContent = stats.total_events ?? 0;
+    document.getElementById("s-uids").textContent = stats.unique_uids ?? 0;
+    document.getElementById("s-sessions").textContent = stats.unique_sessions ?? 0;
+    document.getElementById("s-pv").textContent = stats.page_views ?? 0;
+    document.getElementById("s-term").textContent = stats.terminal_opens ?? 0;
+    document.getElementById("s-ctfstart").textContent = stats.ctf_starts ?? 0;
+    document.getElementById("s-ctfsolve").textContent = stats.ctf_solves ?? 0;
+    document.getElementById("s-elite").textContent = stats.elite_solves ?? 0;
+    document.getElementById("s-5m").textContent = stats.events_last_5m ?? 0;
+    document.getElementById("s-1h").textContent = stats.events_last_1h ?? 0;
+
+    const topEl = document.getElementById("top-events");
+    const counts = stats.counts_by_event || {};
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 20);
+    if (sorted.length === 0) {
+      topEl.innerHTML = '<li class="empty">—</li>';
+    } else {
+      topEl.innerHTML = sorted.map(([k, v]) => `<li><span class="k">${escape(k)}</span><span class="v">${v}</span></li>`).join("");
+    }
+
+    const cEl = document.getElementById("countries");
+    const countries = stats.countries || {};
+    const cSorted = Object.entries(countries).sort((a, b) => b[1] - a[1]).slice(0, 20);
+    if (cSorted.length === 0) {
+      cEl.innerHTML = '<li class="empty">—</li>';
+    } else {
+      cEl.innerHTML = cSorted.map(([k, v]) => `<li><span class="k">${escape(k || "??")}</span><span class="v">${v}</span></li>`).join("");
+    }
+  }
+
+  async function tick() {
+    const base = (endpointInput.value || "").trim().replace(/\/$/, "");
+    if (!base) { statusLine.textContent = "no endpoint set"; return; }
+    if (paused) return;
+    try {
+      const [feedR, statsR] = await Promise.all([
+        fetch(base + "/feed?limit=150", { cache: "no-store" }),
+        fetch(base + "/stats", { cache: "no-store" })
+      ]);
+      if (!feedR.ok || !statsR.ok) throw new Error("HTTP " + feedR.status + "/" + statsR.status);
+      const feed = await feedR.json();
+      const stats = await statsR.json();
+      renderFeed(feed.items || []);
+      renderStats(stats || {});
+      lastOk = Date.now();
+      statusLine.textContent = "live · updated " + new Date().toTimeString().slice(0, 8);
+      statusLine.classList.remove("err");
+    } catch (e) {
+      statusLine.textContent = "error: " + e.message;
+      statusLine.classList.add("err");
+    }
+  }
+
+  function connect() {
+    const base = endpointInput.value.trim();
+    if (!base) { alert("Enter your worker URL first"); return; }
+    localStorage.setItem(LS_KEY, base);
+    statusLine.textContent = "connecting to " + base + " ...";
+    if (pollTimer) clearInterval(pollTimer);
+    tick();
+    pollTimer = setInterval(tick, 3000);
+  }
+
+  connectBtn.addEventListener("click", connect);
+  pauseBtn.addEventListener("click", () => {
+    paused = !paused;
+    pauseBtn.textContent = paused ? "RESUME" : "PAUSE";
+  });
+
+  // Auto-connect if we have a stored endpoint
+  if (endpointInput.value) connect();
+})();
+</script>
+</body>
+</html>

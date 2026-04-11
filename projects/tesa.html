@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
+  <meta name="google-site-verification" content="1NaVBAib9wmWtcFraGKaPpc8PTY94yaMZ6rFvMctKy8" />
+
+  <title>TESA — App esport Flutter + Challonge API | Mohamed Melek Chtourou</title>
+  <meta name="description" content="TESA : application Flutter de gestion de tournois esport. Intégration API Challonge, classements temps réel, profils joueurs, vidéos. Backend Node.js + MySQL. Par Mohamed Melek Chtourou." />
+  <meta name="keywords" content="TESA, esport, tournois, Flutter, Challonge API, Node.js, MySQL, Mohamed Melek Chtourou, développeur Flutter, portfolio esport" />
+  <meta name="author" content="Mohamed Melek Chtourou" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://cyber-cv.mohamedmelekchtourou.com/projects/tesa.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Mohamed Melek Chtourou — Portfolio" />
+  <meta property="og:title" content="TESA — App esport Flutter" />
+  <meta property="og:description" content="Gestion de tournois esport avec API Challonge, classements temps réel. Flutter + Node.js + MySQL." />
+  <meta property="og:url" content="https://cyber-cv.mohamedmelekchtourou.com/projects/tesa.html" />
+  <meta property="og:image" content="https://cyber-cv.mohamedmelekchtourou.com/assets/img/portfolio/Tesa/TesaLogo.png" />
+  <meta property="og:locale" content="fr_FR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="TESA — App esport Flutter" />
+  <meta name="twitter:description" content="Gestion de tournois esport. Flutter, API Challonge, Node.js, MySQL." />
+  <meta name="twitter:image" content="https://cyber-cv.mohamedmelekchtourou.com/assets/img/portfolio/Tesa/TesaLogo.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "TESA",
+    "description": "Application Flutter de gestion de tournois esport avec API Challonge, classements temps réel et profils joueurs.",
+    "applicationCategory": "SportsApplication",
+    "operatingSystem": "iOS, Android",
+    "datePublished": "2023",
+    "image": "https://cyber-cv.mohamedmelekchtourou.com/assets/img/portfolio/Tesa/TesaLogo.png",
+    "author": { "@type": "Person", "name": "Mohamed Melek Chtourou", "url": "https://cyber-cv.mohamedmelekchtourou.com/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://cyber-cv.mohamedmelekchtourou.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://cyber-cv.mohamedmelekchtourou.com/#projects" },
+      { "@type": "ListItem", "position": 3, "name": "TESA" }
+    ]
+  }
+  </script>
+
+  <script src="../js/analytics.js"></script>
+  <script src="../js/track.js"></script>
+
+  <link rel="icon" href="../assets/img/portfolio/Tesa/TesaLogo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="../css/main.css" />
+  <link rel="stylesheet" href="../css/cyberpunk.css" />
+  <link rel="stylesheet" href="../css/animations.css" />
+  <link rel="stylesheet" href="../css/games.css" />
+</head>
+<body>
+
+  <canvas id="matrix-canvas" class="matrix-canvas"></canvas>
+  <div class="scanlines"></div>
+  <div class="crt-vignette"></div>
+  <div class="noise"></div>
+  <div class="vhs-bar"></div>
+
+  <div class="hud-brackets">
+    <div class="bracket bracket-tl"></div>
+    <div class="bracket bracket-tr"></div>
+    <div class="bracket bracket-bl"></div>
+    <div class="bracket bracket-br"></div>
+  </div>
+
+  <header class="status-bar">
+    <div class="status-left">
+      <span class="status-dot"></span>
+      <span>PROJECT_LOADER.EXE // ACCESS_GRANTED</span>
+    </div>
+    <div class="status-right">
+      <a href="../index.html" style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;">← BACK_TO_INDEX</a>
+    </div>
+  </header>
+
+  <main>
+  <section class="project-hero">
+    <div class="container">
+      <p class="ph-breadcrumb">
+        <a href="../index.html">~/root</a>
+        <span class="sep">/</span>
+        <a href="../index.html#projects">projects</a>
+        <span class="sep">/</span>
+        <span style="color:var(--neon-primary);text-shadow:var(--glow-sm);">tesa</span>
+      </p>
+
+      <div class="ph-logo">
+        <img src="../assets/img/portfolio/Tesa/TesaLogo.png" alt="Tesa" />
+      </div>
+
+      <h1 class="ph-title glitch" data-text="TESA">TESA</h1>
+      <p class="ph-subtitle">
+        Application Flutter de gestion de tournois sportifs avec intégration de l'API Challonge, classements en temps réel, gestion des joueurs et suivi des événements. Un écosystème esport centralisé.
+      </p>
+
+      <div class="ph-stats">
+        <div class="ph-stat"><span class="ph-stat-num">9</span><span class="ph-stat-label">SCREENS</span></div>
+        <div class="ph-stat"><span class="ph-stat-num">Challonge</span><span class="ph-stat-label">API_INTEGRATED</span></div>
+        <div class="ph-stat"><span class="ph-stat-num">Flutter</span><span class="ph-stat-label">FRAMEWORK</span></div>
+        <div class="ph-stat"><span class="ph-stat-num">2023</span><span class="ph-stat-label">YEAR</span></div>
+      </div>
+
+      <div class="ph-techs">
+        <span class="tech-chip">Dart / Flutter</span>
+        <span class="tech-chip">Node.js</span>
+        <span class="tech-chip">MySQL</span>
+        <span class="tech-chip">Challonge API</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <div class="container">
+      <div class="proj-grid">
+        <div>
+          <div class="info-card reveal">
+            <h3>// SUMMARY</h3>
+            <p>
+              Tesa est une application de gestion de tournois sportifs qui intègre l'API Challonge pour générer et suivre les brackets. Elle offre un classement en temps réel, la gestion des joueurs, le suivi des événements et un système intégré de vidéos.
+            </p>
+          </div>
+          <div class="info-card reveal">
+            <h4>// KEY_FEATURES</h4>
+            <ul>
+              <li>Gestion de tournois via API Challonge</li>
+              <li>Classements en temps réel</li>
+              <li>Gestion des joueurs et profils</li>
+              <li>Suivi des événements sportifs</li>
+              <li>Intégration de vidéos</li>
+              <li>Page contact et informations</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="info-card reveal">
+            <h4>// STACK</h4>
+            <div>
+              <span class="tech-chip">Dart / Flutter</span>
+              <span class="tech-chip">Node.js</span>
+              <span class="tech-chip">MySQL</span>
+              <span class="tech-chip">Challonge API</span>
+            </div>
+          </div>
+          <div class="info-card reveal">
+            <h4>// TIMELINE</h4>
+            <p style="font-family:var(--font-mono);color:var(--neon-primary);text-shadow:var(--glow-sm);">2023</p>
+          </div>
+          <div class="info-card reveal">
+            <h4>// STATUS</h4>
+            <p style="color:var(--neon-warn);text-shadow:0 0 6px var(--neon-warn);">◆ PERSONAL PROJECT</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch reveal">
+        <h4 style="color:var(--neon-primary);text-shadow:var(--glow-sm);letter-spacing:0.1em;">// ARCHITECTURE</h4>
+        <p style="color:var(--text-secondary);font-family:var(--font-mono);font-size:0.85rem;margin-top:8px;">Application Flutter connectée à un backend Node.js avec MySQL et intégration de l'API Challonge.</p>
+        <div class="arch-diagram">
+          <div class="arch-node"><span class="icon">📱</span><div class="title">Flutter App</div><div class="sub">Dart</div></div>
+          <div class="arch-arrow">⟷</div>
+          <div class="arch-node"><span class="icon">⚡</span><div class="title">Node.js API</div><div class="sub">REST Backend</div></div>
+          <div class="arch-arrow">⟷</div>
+          <div class="arch-node"><span class="icon">🗄</span><div class="title">MySQL</div><div class="sub">Database</div></div>
+        </div>
+        <div class="arch-diagram" style="margin-top:18px;">
+          <div class="arch-node"><span class="icon">📱</span><div class="title">Flutter App</div><div class="sub">Direct call</div></div>
+          <div class="arch-arrow">⟷</div>
+          <div class="arch-node"><span class="icon">🏆</span><div class="title">Challonge API</div><div class="sub">Brackets & Tournaments</div></div>
+        </div>
+      </div>
+
+      <h2 class="section-title reveal" style="margin-top:var(--s5);">// MOBILE_SHOWCASE</h2>
+      <p class="reveal" style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.82rem;margin-bottom:var(--s3);">&gt; 9 écrans couvrant la gestion des tournois, classements et profils</p>
+
+      <div class="gallery">
+        <div class="gallery-item" data-img="../assets/img/portfolio/Tesa/home.PNG"><img src="../assets/img/portfolio/Tesa/home.PNG" alt="Accueil" loading="lazy" /><div class="gallery-label">ACCUEIL</div></div>
+        <div class="gallery-item" data-img="../assets/img/portfolio/Tesa/classment_home.PNG"><img src="../assets/img/portfolio/Tesa/classment_home.PNG" alt="Classement" loading="lazy" /><div class="gallery-label">CLASSEMENT</div></div>
+        <div class="gallery-item" data-img="../assets/img/portfolio/Tesa/video_home.PNG"><img src="../assets/img/portfolio/Tesa/video_home.PNG" alt="Vidéos" loading="lazy" /><div class="gallery-label">VIDÉOS</div></div>
+        <div class="gallery-item" data-img="../assets/img/portfolio/Tesa/players.PNG"><img src="../assets/img/portfolio/Tesa/players.PNG" alt="Joueurs" loading="lazy" /><div class="gallery-label">JOUEURS</div></div>
+        <div class="gallery-item" data-img="../assets/img/portfolio/Tesa/ranking.PNG"><img src="../assets/img/portfolio/Tesa/ranking.PNG" alt="Ranking" loading="lazy" /><div class="gallery-label">RANKING</div></div>
+        <div class="gallery-item" data-img="../assets/img/portfolio/Tesa/events.PNG"><img src="../assets/img/portfolio/Tesa/events.PNG" alt="Events" loading="lazy" /><div class="gallery-label">ÉVÉNEMENTS</div></div>
+        <div class="gallery-item" data-img="../assets/img/portfolio/Tesa/profil1.PNG"><img src="../assets/img/portfolio/Tesa/profil1.PNG" alt="Profil" loading="lazy" /><div class="gallery-label">PROFIL</div></div>
+        <div class="gallery-item" data-img="../assets/img/portfolio/Tesa/profil2.PNG"><img src="../assets/img/portfolio/Tesa/profil2.PNG" alt="Profil 2" loading="lazy" /><div class="gallery-label">PROFIL_DÉTAIL</div></div>
+        <div class="gallery-item" data-img="../assets/img/portfolio/Tesa/contact.PNG"><img src="../assets/img/portfolio/Tesa/contact.PNG" alt="Contact" loading="lazy" /><div class="gallery-label">CONTACT</div></div>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="footer-text">&copy; <span id="year"></span> MOHAMED_MELEK_CHTOUROU // <a href="../index.html" style="color:var(--neon-primary);">← back to /root</a></p>
+    </div>
+  </footer>
+
+  <div class="bottom-bar">
+    <span class="prompt">~$</span>
+    <span>cat tesa.md — press / to open terminal</span>
+    <span class="blink">_</span>
+  </div>
+
+  <div class="g-modal" id="g-modal">
+    <button class="g-close">✕</button>
+    <button class="g-nav g-prev">❮</button>
+    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=" alt="" />
+    <button class="g-nav g-next">❯</button>
+  </div>
+
+  <div id="term-modal" class="term-modal">
+    <div class="term-modal-inner">
+      <div class="term-modal-head">
+        <div class="dots"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+        <span class="t-title">root@chtourou.sh</span>
+        <button class="t-close">✕</button>
+      </div>
+      <div class="term-modal-body"></div>
+      <div class="term-input-wrap">
+        <span class="p">root@chtourou:~$</span>
+        <input type="text" id="term-input" autocomplete="off" spellcheck="false" />
+        <span class="caret">_</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cursor.js"></script>
+  <script src="../js/i18n.js"></script>
+  <script src="../js/sound.js"></script>
+  <script src="../js/matrix-rain.js"></script>
+  <script src="../js/fx.js"></script>
+  <script src="../js/mode.js"></script>
+  <script src="../js/glitch.js"></script>
+  <script src="../js/vfs.js"></script>
+  <script src="../js/chip.js"></script>
+  <script src="../js/ctf.js"></script>
+  <script src="../js/xp.js"></script>
+  <script src="../js/games.js"></script>
+  <script src="../js/voight-kampff.js"></script>
+  <script src="../js/ai-chat.js"></script>
+  <script src="../js/terminal.js"></script>
+  <script src="../js/easter-eggs.js"></script>
+  <script src="../js/project-page.js"></script>
+</body>
+</html>

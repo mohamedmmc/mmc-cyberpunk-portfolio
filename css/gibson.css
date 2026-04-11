@@ -1,0 +1,167 @@
+/* =========================================================
+   gibson.css — Hidden reward page styles
+   ========================================================= */
+
+.gibson-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px var(--s3) 60px;
+  position: relative;
+}
+
+.gibson-access {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  color: var(--neon-accent);
+  text-shadow: 0 0 20px var(--neon-accent), 0 0 40px var(--neon-accent);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--s2);
+  animation: access 2s ease-out;
+}
+@keyframes access {
+  0% { opacity: 0; letter-spacing: 0.5em; filter: blur(20px); }
+  60% { filter: blur(0); }
+  100% { opacity: 1; letter-spacing: 0.1em; filter: blur(0); }
+}
+
+.gibson-sub {
+  font-family: var(--font-mono);
+  color: var(--neon-accent);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  margin-bottom: var(--s5);
+  opacity: 0.7;
+}
+
+.gibson-content {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid var(--neon-accent);
+  padding: var(--s5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 0 24px rgba(0, 255, 65, 0.4), 0 0 64px rgba(0, 255, 65, 0.2);
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+}
+
+.gibson-content h2 {
+  font-family: var(--font-display);
+  color: var(--neon-accent);
+  text-shadow: 0 0 8px var(--neon-accent);
+  font-size: 1.1rem;
+  margin-bottom: var(--s2);
+  padding-bottom: 6px;
+  border-bottom: 1px dashed rgba(0, 255, 65, 0.3);
+  letter-spacing: 0.1em;
+}
+.gibson-content h2:not(:first-of-type) { margin-top: var(--s4); }
+
+.gibson-content p {
+  color: var(--text-primary);
+  line-height: 1.8;
+  font-size: 0.95rem;
+  font-family: var(--font-mono);
+}
+.gibson-content p + p { margin-top: 12px; }
+
+.gibson-content .signature {
+  font-family: var(--font-display);
+  color: var(--neon-accent);
+  text-shadow: 0 0 6px var(--neon-accent);
+  margin-top: var(--s3);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
+
+.gibson-ascii {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--neon-accent);
+  text-shadow: 0 0 4px var(--neon-accent);
+  line-height: 1;
+  margin-bottom: var(--s4);
+  white-space: pre;
+  overflow-x: auto;
+  opacity: 0.8;
+}
+
+.stack-list {
+  list-style: none;
+  padding: 0;
+  font-family: var(--font-mono);
+}
+.stack-list li {
+  padding: 6px 0 6px 20px;
+  position: relative;
+  color: var(--text-secondary);
+  border-bottom: 1px dashed rgba(0, 255, 65, 0.1);
+  font-size: 0.88rem;
+}
+.stack-list li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--neon-accent);
+  text-shadow: 0 0 4px var(--neon-accent);
+}
+.stack-list li:last-child { border-bottom: none; }
+
+.gibson-cta {
+  display: flex;
+  gap: var(--s2);
+  flex-wrap: wrap;
+  margin-top: var(--s4);
+  padding-top: var(--s3);
+  border-top: 1px dashed rgba(0, 255, 65, 0.3);
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 900px) {
+  .gibson-hero {
+    padding: 70px 14px 40px;
+    min-height: auto;
+    align-items: flex-start;
+    padding-top: 60px;
+  }
+  .gibson-sub {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    margin-bottom: var(--s3);
+  }
+  .gibson-content {
+    padding: var(--s3);
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+  }
+  .gibson-content h2 {
+    font-size: 0.82rem;
+    margin-bottom: var(--s1);
+  }
+  .gibson-content p {
+    font-size: 0.82rem;
+    line-height: 1.7;
+  }
+  .gibson-ascii {
+    font-size: 0.38rem;
+    overflow-x: auto;
+    margin-bottom: var(--s2);
+  }
+  .stack-list li {
+    font-size: 0.78rem;
+    padding: 5px 0 5px 16px;
+  }
+  .gibson-cta {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .gibson-cta .btn-cyber {
+    width: 100%;
+    justify-content: center;
+  }
+  .gibson-content .signature { font-size: 0.82rem; }
+}
