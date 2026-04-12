@@ -1164,3 +1164,72 @@ footer {
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
   .matrix-canvas { display: none; }
 }
+
+/* ---------- Print styles ---------- */
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: #fff !important;
+    color: #000 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    border-color: #ccc !important;
+  }
+
+  body {
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  /* Hide non-essential elements */
+  .status-bar,
+  .bottom-bar,
+  .hud-brackets,
+  .matrix-bg,
+  .vhs-bar,
+  .grid-bg,
+  .custom-cursor,
+  .cursor-trail,
+  #terminal-overlay,
+  #ai-chat,
+  .scroll-indicator,
+  .toast,
+  .xp-badge,
+  .lang-glitch-overlay,
+  canvas,
+  .btn-self-destruct,
+  footer .ascii-footer {
+    display: none !important;
+  }
+
+  /* Show content properly */
+  .container { max-width: 100%; padding: 0; }
+  section { page-break-inside: avoid; padding: 1rem 0; }
+  .section-title { font-size: 14pt; margin-bottom: 0.5rem; }
+
+  /* Hero section */
+  .hero { min-height: auto; padding: 1rem 0; }
+  .hero-name { font-size: 24pt; }
+  .hero-desc { font-size: 11pt; }
+  .hero-stats { display: flex; gap: 2rem; }
+
+  /* Links */
+  a { text-decoration: underline; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; color: #666 !important; }
+  a[href^="#"]::after,
+  a[href^="javascript"]::after { content: ""; }
+
+  /* Project cards */
+  .project-card { break-inside: avoid; border: 1px solid #ccc; padding: 0.5rem; margin-bottom: 0.5rem; }
+  .project-img-wrap { max-height: 200px; overflow: hidden; }
+
+  /* Skills */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .skill-card { border: 1px solid #ccc; padding: 0.5rem; }
+
+  /* Contact */
+  .email-link { font-size: 14pt; }
+  .socials a::after { content: " (" attr(href) ")"; font-size: 8pt; }
+}
