@@ -7,7 +7,7 @@
    CORS: open for GET, protected POST with optional token
    ========================================================= */
 
-const MAX_FEED_ITEMS = 200;  // keep only last 200 events in the ring buffer
+const MAX_FEED_ITEMS = 2000; // keep last 2000 events in the ring buffer
 const FEED_KEY = "mmc:feed"; // JSON array in KV
 
 function json(body, status = 200, extraHeaders = {}) {
