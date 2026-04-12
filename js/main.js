@@ -43,6 +43,42 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     startMainPage();
   }
+
+  // ---- Scroll progress bar ----
+  const scrollBar = document.querySelector(".scroll-progress");
+  if (scrollBar) {
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+      scrollBar.style.width = pct + "%";
+    };
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    updateProgress();
+  }
+
+  // ---- Light mode toggle ----
+  const themeToggle = document.getElementById("theme-toggle");
+  if (themeToggle) {
+    const savedTheme = localStorage.getItem("mmc_theme");
+    if (savedTheme === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+      themeToggle.textContent = "☾ DARK";
+    }
+    themeToggle.addEventListener("click", () => {
+      const isLight = document.documentElement.getAttribute("data-theme") === "light";
+      if (isLight) {
+        document.documentElement.removeAttribute("data-theme");
+        localStorage.setItem("mmc_theme", "");
+        themeToggle.textContent = "☀ LIGHT";
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem("mmc_theme", "light");
+        themeToggle.textContent = "☾ DARK";
+      }
+      if (window.MMC_SOUND) window.MMC_SOUND.presets.success();
+    });
+  }
 });
 
 function startMainPage() {

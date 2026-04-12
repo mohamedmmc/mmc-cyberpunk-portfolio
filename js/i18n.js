@@ -72,6 +72,11 @@ const I18N = {
     contact_title: "// 04_TRANSMIT_SIGNAL",
     contact_prompt: "./transmit --target=",
     contact_hint: "// Réponse garantie en moins de 24h",
+    contact_form_name: "NOM",
+    contact_form_email: "EMAIL",
+    contact_form_msg: "MESSAGE // Écrivez ici...",
+    contact_form_send: "→ TRANSMIT",
+    contact_cv: "↓ DOWNLOAD_CV.pdf",
 
     // Footer
     footer_text: "Compiled with",
@@ -146,6 +151,11 @@ const I18N = {
     contact_title: "// 04_TRANSMIT_SIGNAL",
     contact_prompt: "./transmit --target=",
     contact_hint: "// Reply guaranteed within 24h",
+    contact_form_name: "NAME",
+    contact_form_email: "EMAIL",
+    contact_form_msg: "MESSAGE // Write here...",
+    contact_form_send: "→ TRANSMIT",
+    contact_cv: "↓ DOWNLOAD_CV.pdf",
 
     footer_text: "Compiled with",
     footer_in: "in Tunisia",
@@ -217,6 +227,11 @@ const I18N = {
     contact_title: "// 04_7R4N5MI7_5IGN4L",
     contact_prompt: "./7r4n5mi7 --74rg37=",
     contact_hint: "// R3PLY GU4R4N733D WI7HIN 24H",
+    contact_form_name: "N4M3",
+    contact_form_email: "3M4IL",
+    contact_form_msg: "M3554G3 // WRI73 H3R3...",
+    contact_form_send: "→ 7R4N5MI7",
+    contact_cv: "↓ D0WNL04D_CV.pdf",
 
     footer_text: "C0MPIL3D WI7H",
     footer_in: "IN 7UNI5I4",
