@@ -110,6 +110,69 @@ async function handleFeed(req, env) {
   return json({ count: feed.length, items: feed.slice(0, limit) });
 }
 
+// ---- Contact form handler ----
+async function handleContact(req, env) {
+  let body;
+  try { body = await req.json(); } catch (e) {
+    return json({ error: "invalid-json" }, 400);
+  }
+
+  const name    = (body.name    || "").trim().slice(0, 100);
+  const email   = (body.email   || "").trim().slice(0, 100);
+  const message = (body.message || "").trim().slice(0, 2000);
+
+  if (!name || !email || !message) return json({ error: "missing-fields" }, 400);
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return json({ error: "invalid-email" }, 400);
+
+  // Rate limit: max 1 message per IP per 5 min
+  const ipHash = await hashIp(req.headers.get("cf-connecting-ip") || "");
+  const rlKey = `rl:contact:${ipHash}`;
+  const last = await env.MMC.get(rlKey);
+  if (last && Date.now() - parseInt(last, 10) < 5 * 60 * 1000) {
+    return json({ error: "rate-limited", retry_after: 300 }, 429);
+  }
+  await env.MMC.put(rlKey, String(Date.now()), { expirationTtl: 300 });
+
+  // Send via Resend API
+  if (!env.RESEND_KEY) return json({ error: "email-not-configured" }, 500);
+
+  const res = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${env.RESEND_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      from: `Portfolio <onboarding@resend.dev>`,
+      to: ["contact@mohamedmelekchtourou.com"],
+      reply_to: email,
+      subject: `[Portfolio] Message de ${name}`,
+      html: `
+        <div style="font-family:monospace;max-width:600px;margin:0 auto;padding:24px;background:#0a0b18;color:#e4f6ff;border:1px solid #00f0ff33;border-radius:8px">
+          <h2 style="color:#00f0ff;margin:0 0 16px">📩 Nouveau message</h2>
+          <p><strong style="color:#00f0ff">Nom:</strong> ${escHtml(name)}</p>
+          <p><strong style="color:#00f0ff">Email:</strong> <a href="mailto:${escHtml(email)}" style="color:#ff00ea">${escHtml(email)}</a></p>
+          <hr style="border:none;border-top:1px solid #00f0ff33;margin:16px 0">
+          <p style="white-space:pre-wrap;line-height:1.6">${escHtml(message)}</p>
+          <hr style="border:none;border-top:1px solid #00f0ff33;margin:16px 0">
+          <p style="color:#4a5a6e;font-size:12px">IP hash: ${ipHash} · Country: ${(req.cf && req.cf.country) || "?"} · ${new Date().toISOString()}</p>
+        </div>
+      `
+    })
+  });
+
+  if (!res.ok) {
+    const err = await res.text();
+    return json({ error: "send-failed", detail: err }, 502);
+  }
+
+  return json({ ok: true, message: "sent" });
+}
+
+function escHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
 async function handleStats(req, env) {
   const feed = await readFeed(env);
   const counts = {};
@@ -159,11 +222,12 @@ export default {
     if (req.method === "OPTIONS") return corsPreflight();
     const url = new URL(req.url);
 
-    if (url.pathname === "/track" && req.method === "POST") return handleTrack(req, env);
-    if (url.pathname === "/feed"  && req.method === "GET")  return handleFeed(req, env);
-    if (url.pathname === "/stats" && req.method === "GET")  return handleStats(req, env);
+    if (url.pathname === "/track"   && req.method === "POST") return handleTrack(req, env);
+    if (url.pathname === "/contact" && req.method === "POST") return handleContact(req, env);
+    if (url.pathname === "/feed"    && req.method === "GET")  return handleFeed(req, env);
+    if (url.pathname === "/stats"   && req.method === "GET")  return handleStats(req, env);
     if (url.pathname === "/" && req.method === "GET") {
-      return json({ service: "mmc-feed", endpoints: ["/track (POST)", "/feed?limit=100", "/stats"] });
+      return json({ service: "mmc-feed", endpoints: ["/track (POST)", "/contact (POST)", "/feed?limit=100", "/stats"] });
     }
     return json({ error: "not-found" }, 404);
   }

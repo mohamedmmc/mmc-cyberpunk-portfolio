@@ -581,16 +581,17 @@
           <p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.78rem;margin-top:8px;" data-i18n="contact_hint">// Réponse garantie en moins de 24h</p>
 
           <!-- Contact form -->
-          <form class="contact-form" id="contact-form" action="mailto:contact@mohamedmelekchtourou.com" method="POST" enctype="text/plain">
+          <form class="contact-form" id="contact-form" novalidate>
             <div class="form-row">
               <input type="text" name="name" placeholder="NOM // NAME" required aria-label="Your name" />
               <input type="email" name="email" placeholder="EMAIL" required aria-label="Your email" />
             </div>
             <textarea name="message" rows="4" placeholder="MESSAGE // Écrivez ici..." required aria-label="Your message"></textarea>
             <div class="form-actions">
-              <button type="submit" class="btn-cyber">→ TRANSMIT</button>
+              <button type="submit" class="btn-cyber" id="contact-submit">→ TRANSMIT</button>
               <a href="cv.html" class="btn-cyber btn-ghost" id="cv-download" aria-label="View CV">&gt;_ VOIR_MON_CV</a>
             </div>
+            <p id="contact-status" style="display:none;font-family:var(--font-mono);font-size:0.82rem;margin-top:12px;"></p>
           </form>
 
           <div class="socials">

@@ -174,6 +174,65 @@ function initAnalyticsBindings() {
   document.querySelectorAll("a[href*='github.com']").forEach((a) => {
     a.addEventListener("click", () => window.MMC_TRACK.contactClick("github"));
   });
+
+  // ---- Contact form submission ----
+  const contactForm = document.getElementById("contact-form");
+  if (contactForm) {
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById("contact-submit");
+      const status = document.getElementById("contact-status");
+      const fd = new FormData(contactForm);
+      const payload = {
+        name: fd.get("name"),
+        email: fd.get("email"),
+        message: fd.get("message")
+      };
+
+      // Validate
+      if (!payload.name || !payload.email || !payload.message) {
+        showStatus(status, "⚠ Remplis tous les champs.", "var(--neon-warn)");
+        return;
+      }
+
+      // UI feedback
+      btn.disabled = true;
+      btn.textContent = "⏳ SENDING...";
+      showStatus(status, "", "");
+
+      try {
+        const res = await fetch("https://mmc-feed.purple-mode-c78c.workers.dev/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        if (data.ok) {
+          showStatus(status, "✅ Message transmis ! Réponse sous 24h.", "var(--neon-accent)");
+          contactForm.reset();
+          if (window.MMC_SOUND) MMC_SOUND.presets.success();
+          if (window.MMC_TRACK) MMC_TRACK.contactClick("form");
+        } else if (data.error === "rate-limited") {
+          showStatus(status, "⏳ Un message déjà envoyé, réessaie dans 5 min.", "var(--neon-warn)");
+        } else {
+          showStatus(status, "❌ Erreur : " + (data.error || "inconnue"), "var(--neon-danger)");
+        }
+      } catch (err) {
+        showStatus(status, "❌ Réseau indisponible, réessaie.", "var(--neon-danger)");
+      }
+
+      btn.disabled = false;
+      btn.textContent = "→ TRANSMIT";
+    });
+  }
+}
+
+function showStatus(el, text, color) {
+  if (!el) return;
+  el.textContent = text;
+  el.style.color = color;
+  el.style.display = text ? "block" : "none";
 }
 
 /* ---------- Scroll reveal (IntersectionObserver) ---------- */
