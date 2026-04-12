@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr">
+<html lang="fr" data-theme="">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="js/analytics.js"></script>
+  <script src="js/track.js"></script>
   <title>CV — Mohamed Melek Chtourou</title>
   <meta name="description" content="CV de Mohamed Melek Chtourou — Ingénieur Flutter & Node.js. Téléchargez en PDF ou explorez la version interactive." />
   <meta name="robots" content="index, follow" />
@@ -30,9 +32,10 @@
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/cyberpunk.css" />
   <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/games.css" />
   <style>
     /* ---- CV Page Specific ---- */
-    .cv-page { padding-top: 60px; min-height: 100vh; }
+    .cv-page { padding-top: 70px; min-height: 100vh; }
 
     .cv-tabs {
       display: flex;
@@ -44,7 +47,7 @@
     .cv-tab {
       background: rgba(5, 6, 12, 0.7);
       border: 1px solid var(--border-glow);
-      color: var(--text-secondary);
+      color: var(--text-primary);
       padding: 12px 24px;
       font-family: var(--font-mono);
       font-size: 0.85rem;
@@ -73,7 +76,7 @@
     .cv-panel { display: none; max-width: 700px; margin: 0 auto; text-align: center; }
     .cv-panel.active { display: block; }
     .cv-panel p {
-      color: var(--text-secondary);
+      color: var(--text-primary);
       font-family: var(--font-mono);
       font-size: 0.85rem;
       margin-bottom: var(--s3);
@@ -123,7 +126,7 @@
       transform: translateY(0);
     }
     .cv-block {
-      background: rgba(5, 6, 12, 0.7);
+      background: rgba(5, 6, 12, 0.85);
       border: 1px solid var(--border-glow);
       padding: var(--s3);
       margin-bottom: var(--s3);
@@ -173,7 +176,7 @@
     }
     .skill-name {
       min-width: 100px;
-      color: var(--text-secondary);
+      color: var(--text-primary);
     }
     .skill-bar {
       flex: 1;
@@ -205,7 +208,7 @@
     }
     .exp-title { color: var(--neon-primary); font-size: 0.95rem; font-weight: 700; }
     .exp-company { color: var(--neon-magenta); font-size: 0.82rem; }
-    .exp-date { color: var(--text-muted); font-size: 0.75rem; margin-bottom: 6px; }
+    .exp-date { color: var(--text-secondary); font-size: 0.75rem; margin-bottom: 6px; }
     .exp-stack {
       display: flex;
       flex-wrap: wrap;
@@ -217,11 +220,11 @@
       border: 1px solid var(--border-glow);
       padding: 2px 8px;
       font-size: 0.68rem;
-      color: var(--text-secondary);
+      color: var(--neon-primary);
     }
     .exp-bullets { list-style: none; padding: 0; }
     .exp-bullets li {
-      color: var(--text-secondary);
+      color: var(--text-primary);
       font-size: 0.8rem;
       line-height: 1.6;
       padding-left: 16px;
@@ -263,7 +266,7 @@
     .cv-intro-line {
       font-size: 0.82rem;
       line-height: 1.8;
-      color: var(--neon-accent);
+      color: var(--neon-primary);
       min-height: 1.8em;
     }
     .cv-intro-line .cmd { color: var(--neon-primary); }
@@ -292,21 +295,30 @@
 </head>
 <body>
 
-  <!-- Matrix BG -->
-  <canvas id="matrix-rain" class="matrix-bg" aria-hidden="true"></canvas>
-  <div class="grid-bg" aria-hidden="true"></div>
+  <canvas id="matrix-canvas" class="matrix-canvas"></canvas>
+  <div class="scanlines"></div>
+  <div class="crt-vignette"></div>
+  <div class="noise"></div>
+  <div class="vhs-bar"></div>
 
-  <!-- Back to portfolio -->
+  <div class="hud-brackets">
+    <div class="bracket bracket-tl"></div>
+    <div class="bracket bracket-tr"></div>
+    <div class="bracket bracket-bl"></div>
+    <div class="bracket bracket-br"></div>
+  </div>
+
   <header class="status-bar" role="banner">
     <div class="status-left">
       <span class="status-dot"></span>
-      <a href="index.html" style="color:inherit;text-decoration:none;">&larr; BACK_TO_PORTFOLIO</a>
+      <span>CV_VIEWER.EXE // ACCESS_GRANTED</span>
     </div>
     <div class="status-right">
-      <span style="color:var(--neon-primary);">CV_VIEWER.EXE</span>
+      <a href="index.html" style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border:1px solid transparent;">&larr; BACK_TO_PORTFOLIO</a>
     </div>
   </header>
 
+  <main>
   <div class="cv-page">
     <div class="container">
 
@@ -512,9 +524,58 @@
 
     </div>
   </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p class="footer-text">&copy; <span id="year"></span> MOHAMED_MELEK_CHTOUROU // <a href="index.html" style="color:var(--neon-primary);">&larr; back to /root</a></p>
+    </div>
+  </footer>
+
+  <div class="bottom-bar">
+    <span class="prompt">~$</span>
+    <span>cat cv.md &mdash; press / to open terminal</span>
+    <span class="blink">_</span>
+  </div>
+
+  <!-- Terminal Modal -->
+  <div id="term-modal" class="term-modal">
+    <div class="term-modal-inner">
+      <div class="term-modal-head">
+        <div class="dots">
+          <span class="dot r"></span>
+          <span class="dot y"></span>
+          <span class="dot g"></span>
+        </div>
+        <span class="t-title">root@chtourou.sh</span>
+        <button class="t-close">&#10005;</button>
+      </div>
+      <div class="term-modal-body"></div>
+      <div class="term-input-wrap">
+        <span class="p">root@chtourou:~$</span>
+        <input type="text" id="term-input" autocomplete="off" spellcheck="false" />
+        <span class="caret">_</span>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
+  <script src="js/cursor.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/matrix-rain.js"></script>
   <script src="js/fx.js"></script>
+  <script src="js/mode.js"></script>
+  <script src="js/glitch.js"></script>
+  <script src="js/vfs.js"></script>
+  <script src="js/chip.js"></script>
+  <script src="js/ctf.js"></script>
+  <script src="js/xp.js"></script>
+  <script src="js/games.js"></script>
+  <script src="js/voight-kampff.js"></script>
+  <script src="js/ai-chat.js"></script>
+  <script src="js/terminal.js"></script>
+  <script src="js/easter-eggs.js"></script>
   <script>
     // Tab switching
     document.querySelectorAll(".cv-tab").forEach(tab => {
@@ -624,8 +685,6 @@
       setTimeout(startTour, 500);
     }
 
-    // Matrix rain init
-    if (window.MMC_MATRIX) MMC_MATRIX.init(document.getElementById("matrix-rain"));
   </script>
 
 </body>
