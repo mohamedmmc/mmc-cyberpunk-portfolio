@@ -274,6 +274,27 @@ section {
   text-shadow: var(--glow-sm);
   box-shadow: 0 0 10px rgba(0, 240, 255, 0.25);
 }
+.status-cv-link {
+  background: rgba(0, 240, 255, 0.04);
+  border: 1px solid var(--neon-primary);
+  color: var(--neon-primary);
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+.status-cv-link:hover {
+  background: rgba(0, 240, 255, 0.15);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 4px rgba(0, 240, 255, 0.2); }
+  50% { box-shadow: 0 0 10px rgba(0, 240, 255, 0.4); }
+}
 
 /* ---------- Language switch glitch overlay ---------- */
 .lang-glitch-overlay {

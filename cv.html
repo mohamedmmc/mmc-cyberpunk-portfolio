@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CV — Mohamed Melek Chtourou</title>
+  <meta name="description" content="CV de Mohamed Melek Chtourou — Ingénieur Flutter & Node.js. Téléchargez en PDF ou explorez la version interactive." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://cyber-cv.mohamedmelekchtourou.com/cv.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="CV — Mohamed Melek Chtourou" />
+  <meta property="og:description" content="Ingénieur Flutter & Node.js. 3 apps en production. 146K utilisateurs." />
+  <meta property="og:image" content="https://cyber-cv.mohamedmelekchtourou.com/assets/img/mmc2.jpg" />
+  <meta property="og:url" content="https://cyber-cv.mohamedmelekchtourou.com/cv.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CV — Mohamed Melek Chtourou" />
+  <meta name="twitter:image" content="https://cyber-cv.mohamedmelekchtourou.com/assets/img/mmc2.jpg" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/cyberpunk.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    /* ---- CV Page Specific ---- */
+    .cv-page { padding-top: 60px; min-height: 100vh; }
+
+    .cv-tabs {
+      display: flex;
+      justify-content: center;
+      gap: var(--s2);
+      margin-bottom: var(--s5);
+      flex-wrap: wrap;
+    }
+    .cv-tab {
+      background: rgba(5, 6, 12, 0.7);
+      border: 1px solid var(--border-glow);
+      color: var(--text-secondary);
+      padding: 12px 24px;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .cv-tab:hover {
+      color: var(--neon-primary);
+      border-color: var(--neon-primary);
+      box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+    }
+    .cv-tab.active {
+      color: var(--neon-primary);
+      background: rgba(0, 240, 255, 0.08);
+      border-color: var(--neon-primary);
+      text-shadow: var(--glow-sm);
+    }
+
+    /* Download panels */
+    .cv-panel { display: none; max-width: 700px; margin: 0 auto; text-align: center; }
+    .cv-panel.active { display: block; }
+    .cv-panel p {
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      margin-bottom: var(--s3);
+      line-height: 1.6;
+    }
+    .cv-download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--bg-primary);
+      background: var(--neon-primary);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: var(--s2);
+    }
+    .cv-download-btn:hover {
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
+      transform: translateY(-2px);
+    }
+    .cv-download-btn.ghost {
+      background: transparent;
+      color: var(--neon-primary);
+      border: 1px solid var(--neon-primary);
+    }
+
+    /* Interactive tour */
+    #cv-interactive {
+      max-width: 800px;
+      margin: 0 auto;
+      font-family: var(--font-mono);
+    }
+    .cv-section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s, transform 0.6s;
+      margin-bottom: var(--s4);
+    }
+    .cv-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .cv-block {
+      background: rgba(5, 6, 12, 0.7);
+      border: 1px solid var(--border-glow);
+      padding: var(--s3);
+      margin-bottom: var(--s3);
+      position: relative;
+    }
+    .cv-block::before {
+      content: attr(data-label);
+      position: absolute;
+      top: -10px;
+      left: 16px;
+      background: var(--bg-primary);
+      padding: 0 8px;
+      color: var(--neon-primary);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .cv-prompt {
+      color: var(--neon-accent);
+      font-size: 0.8rem;
+      margin-bottom: var(--s2);
+    }
+    .cv-prompt span { color: var(--neon-primary); }
+    .cv-output {
+      color: var(--text-primary);
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+    .cv-output strong { color: var(--neon-primary); }
+    .cv-joke {
+      color: var(--neon-accent);
+      font-style: italic;
+      font-size: 0.78rem;
+      margin-top: var(--s2);
+      opacity: 0;
+      transition: opacity 0.8s;
+    }
+    .cv-joke.show { opacity: 1; }
+
+    /* Skill bars */
+    .skill-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 6px;
+      font-size: 0.82rem;
+    }
+    .skill-name {
+      min-width: 100px;
+      color: var(--text-secondary);
+    }
+    .skill-bar {
+      flex: 1;
+      height: 14px;
+      background: rgba(0, 240, 255, 0.05);
+      border: 1px solid var(--border-glow);
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--neon-primary), var(--neon-magenta));
+      box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
+      width: 0%;
+      transition: width 1.2s ease-out;
+    }
+    .skill-pct {
+      min-width: 40px;
+      text-align: right;
+      color: var(--neon-primary);
+      font-size: 0.75rem;
+    }
+
+    /* Experience timeline */
+    .exp-card {
+      border-left: 2px solid var(--neon-primary);
+      padding-left: var(--s3);
+      margin-bottom: var(--s3);
+    }
+    .exp-title { color: var(--neon-primary); font-size: 0.95rem; font-weight: 700; }
+    .exp-company { color: var(--neon-magenta); font-size: 0.82rem; }
+    .exp-date { color: var(--text-muted); font-size: 0.75rem; margin-bottom: 6px; }
+    .exp-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin: 6px 0;
+    }
+    .exp-tag {
+      background: rgba(0, 240, 255, 0.06);
+      border: 1px solid var(--border-glow);
+      padding: 2px 8px;
+      font-size: 0.68rem;
+      color: var(--text-secondary);
+    }
+    .exp-bullets { list-style: none; padding: 0; }
+    .exp-bullets li {
+      color: var(--text-secondary);
+      font-size: 0.8rem;
+      line-height: 1.6;
+      padding-left: 16px;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: "\2192";
+      position: absolute;
+      left: 0;
+      color: var(--neon-accent);
+    }
+
+    /* Nav buttons */
+    .cv-nav {
+      display: flex;
+      justify-content: center;
+      gap: var(--s2);
+      margin-top: var(--s4);
+      flex-wrap: wrap;
+    }
+    .cv-nav a, .cv-nav button {
+      padding: 10px 24px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      border: 1px solid var(--border-glow);
+      background: rgba(5, 6, 12, 0.7);
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .cv-nav a:hover, .cv-nav button:hover {
+      color: var(--neon-primary);
+      border-color: var(--neon-primary);
+    }
+
+    /* Intro typing */
+    .cv-intro-line {
+      font-size: 0.82rem;
+      line-height: 1.8;
+      color: var(--neon-accent);
+      min-height: 1.8em;
+    }
+    .cv-intro-line .cmd { color: var(--neon-primary); }
+    .cv-intro-line .warn { color: var(--neon-warn, #ffcc00); }
+
+    /* CTA final */
+    .cv-final {
+      text-align: center;
+      padding: var(--s4) 0;
+    }
+    .cv-final .verdict {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 3vw, 1.6rem);
+      color: var(--neon-primary);
+      text-shadow: var(--glow-md);
+      margin-bottom: var(--s3);
+    }
+
+    @media (max-width: 600px) {
+      .cv-tabs { gap: 6px; }
+      .cv-tab { padding: 8px 14px; font-size: 0.75rem; }
+      .skill-name { min-width: 70px; font-size: 0.72rem; }
+      .exp-card { padding-left: var(--s2); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Matrix BG -->
+  <canvas id="matrix-rain" class="matrix-bg" aria-hidden="true"></canvas>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <!-- Back to portfolio -->
+  <header class="status-bar" role="banner">
+    <div class="status-left">
+      <span class="status-dot"></span>
+      <a href="index.html" style="color:inherit;text-decoration:none;">&larr; BACK_TO_PORTFOLIO</a>
+    </div>
+    <div class="status-right">
+      <span style="color:var(--neon-primary);">CV_VIEWER.EXE</span>
+    </div>
+  </header>
+
+  <div class="cv-page">
+    <div class="container">
+
+      <!-- Page title -->
+      <div class="section-header" style="text-align:center;margin-bottom:var(--s4);">
+        <h1 class="section-title glitch" data-text="// CURRICULUM_VITAE" style="font-size:clamp(1.2rem,4vw,2rem);">// CURRICULUM_VITAE</h1>
+        <p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.8rem;margin-top:8px;">Mohamed Melek Chtourou &mdash; Ing&eacute;nieur Flutter &amp; Node.js</p>
+      </div>
+
+      <!-- 3 tabs -->
+      <div class="cv-tabs">
+        <button class="cv-tab" data-panel="human" aria-label="Download design CV">&#128100; POUR HUMAIN</button>
+        <button class="cv-tab" data-panel="bot" aria-label="Download ATS CV">&#129302; POUR BOT</button>
+        <button class="cv-tab active" data-panel="interactive" aria-label="Interactive CV tour">&#9654; VISITE INTERACTIVE</button>
+      </div>
+
+      <!-- Panel: Human PDF -->
+      <div class="cv-panel" id="panel-human">
+        <div class="cv-block" data-label="MODE HUMAIN">
+          <p>&gt; Le beau CV. 2 colonnes, couleurs, design soign&eacute;.<br>
+          &gt; Pour les humains qui jugent un livre &agrave; sa couverture.<br>
+          &gt; (On vous comprend.)</p>
+          <a href="assets/cv/cv_design.pdf" download class="cv-download-btn">&darr; DOWNLOAD_CV_DESIGN.pdf</a>
+        </div>
+      </div>
+
+      <!-- Panel: Bot PDF -->
+      <div class="cv-panel" id="panel-bot">
+        <div class="cv-block" data-label="MODE ATS">
+          <p>&gt; Le CV sobre. Texte pur, parsable par les robots.<br>
+          &gt; Optimis&eacute; pour les ATS (Applicant Tracking Systems).<br>
+          &gt; Pas de fioritures, que de la data.</p>
+          <a href="assets/cv/cv_ats.pdf" download class="cv-download-btn">&darr; DOWNLOAD_CV_ATS.pdf</a>
+        </div>
+      </div>
+
+      <!-- Panel: Interactive tour -->
+      <div class="cv-panel active" id="panel-interactive">
+        <div id="cv-interactive">
+
+          <!-- Intro typing sequence -->
+          <div class="cv-section" id="cv-intro" style="margin-bottom:var(--s4);">
+            <div class="cv-intro-line" id="intro-1"></div>
+            <div class="cv-intro-line" id="intro-2"></div>
+            <div class="cv-intro-line" id="intro-3"></div>
+            <div class="cv-intro-line" id="intro-4"></div>
+          </div>
+
+          <!-- Section 1: Identity -->
+          <div class="cv-section" id="cv-identity">
+            <div class="cv-block" data-label="DOSSIER">
+              <pre class="cv-output" style="white-space:pre-wrap;">&#9556;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9559;
+  SUBJECT:  <strong>Mohamed Melek Chtourou</strong>
+  CLASS:    <strong>Flutter &amp; Node.js Engineer</strong>
+  LOCATION: Tunisie &rarr; Relocation FR/EU
+  STATUS:   <strong style="color:var(--neon-accent);">AVAILABLE FOR MISSION</strong>
+  USERS:    <strong>146,000+</strong>
+  THREAT:   Senior-ish
+&#9562;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9552;&#9565;</pre>
+              <p class="cv-joke" id="joke-1">// Fun fact : Il a appris &agrave; coder avant d'apprendre &agrave; cuisiner. Il ne sait toujours pas cuisiner.</p>
+            </div>
+          </div>
+
+          <!-- Section 2: Skills -->
+          <div class="cv-section" id="cv-skills">
+            <div class="cv-prompt"><span>&gt;</span> cat /skills/matrix.dat</div>
+            <div class="cv-block" data-label="SKILLS MATRIX">
+              <div style="margin-bottom:12px;color:var(--neon-magenta);font-size:0.75rem;letter-spacing:0.1em;">MOBILE (EXPERT)</div>
+              <div class="skill-row"><span class="skill-name">Flutter</span><div class="skill-bar"><div class="skill-fill" data-pct="95"></div></div><span class="skill-pct">95%</span></div>
+              <div class="skill-row"><span class="skill-name">Dart</span><div class="skill-bar"><div class="skill-fill" data-pct="92"></div></div><span class="skill-pct">92%</span></div>
+              <div class="skill-row"><span class="skill-name">Swift</span><div class="skill-bar"><div class="skill-fill" data-pct="78"></div></div><span class="skill-pct">78%</span></div>
+              <div class="skill-row"><span class="skill-name">Kotlin</span><div class="skill-bar"><div class="skill-fill" data-pct="70"></div></div><span class="skill-pct">70%</span></div>
+
+              <div style="margin:16px 0 12px;color:var(--neon-magenta);font-size:0.75rem;letter-spacing:0.1em;">BACKEND (AVANC&Eacute;)</div>
+              <div class="skill-row"><span class="skill-name">Node.js</span><div class="skill-bar"><div class="skill-fill" data-pct="90"></div></div><span class="skill-pct">90%</span></div>
+              <div class="skill-row"><span class="skill-name">Express</span><div class="skill-bar"><div class="skill-fill" data-pct="88"></div></div><span class="skill-pct">88%</span></div>
+              <div class="skill-row"><span class="skill-name">GraphQL</span><div class="skill-bar"><div class="skill-fill" data-pct="72"></div></div><span class="skill-pct">72%</span></div>
+              <div class="skill-row"><span class="skill-name">Spring Boot</span><div class="skill-bar"><div class="skill-fill" data-pct="65"></div></div><span class="skill-pct">65%</span></div>
+
+              <div style="margin:16px 0 12px;color:var(--neon-magenta);font-size:0.75rem;letter-spacing:0.1em;">FRONTEND &amp; DATA</div>
+              <div class="skill-row"><span class="skill-name">React</span><div class="skill-bar"><div class="skill-fill" data-pct="72"></div></div><span class="skill-pct">72%</span></div>
+              <div class="skill-row"><span class="skill-name">MySQL</span><div class="skill-bar"><div class="skill-fill" data-pct="85"></div></div><span class="skill-pct">85%</span></div>
+              <div class="skill-row"><span class="skill-name">MongoDB</span><div class="skill-bar"><div class="skill-fill" data-pct="75"></div></div><span class="skill-pct">75%</span></div>
+              <div class="skill-row"><span class="skill-name">Firebase</span><div class="skill-bar"><div class="skill-fill" data-pct="82"></div></div><span class="skill-pct">82%</span></div>
+              <div class="skill-row"><span class="skill-name">Docker</span><div class="skill-bar"><div class="skill-fill" data-pct="78"></div></div><span class="skill-pct">78%</span></div>
+
+              <p class="cv-joke" id="joke-2">// Stack Overflow dit qu'il est "above average". Stack Overflow a peur de lui.</p>
+            </div>
+          </div>
+
+          <!-- Section 3: Experience — The Landlord -->
+          <div class="cv-section" id="cv-exp1">
+            <div class="cv-prompt"><span>&gt;</span> SELECT * FROM experience ORDER BY impact DESC;</div>
+            <div class="cv-block" data-label="EXPERIENCE #1">
+              <div class="exp-card">
+                <div class="exp-title">D&eacute;veloppeur &amp; Product Manager</div>
+                <div class="exp-company">The Landlord</div>
+                <div class="exp-date">Mars 2024 &rarr; Pr&eacute;sent</div>
+                <div class="exp-stack">
+                  <span class="exp-tag">Flutter</span><span class="exp-tag">Node.js</span><span class="exp-tag">MySQL</span><span class="exp-tag">Redis</span><span class="exp-tag">Socket.io</span><span class="exp-tag">Docker</span><span class="exp-tag">Firebase</span><span class="exp-tag">OVH/VPS</span>
+                </div>
+                <ul class="exp-bullets">
+                  <li>Plateforme immobili&egrave;re compl&egrave;te (iOS, Android, Web) &mdash; <strong>146 000 utilisateurs, 2 600+ membres</strong></li>
+                  <li>Architecture microservices : <strong>2 serveurs Node.js</strong> dockeris&eacute;s, <strong>40+ mod&egrave;les de donn&eacute;es, 19 modules</strong></li>
+                  <li>Services tiers : Channel Manager, WhatsApp Business API, Firebase FCM</li>
+                  <li>Pilotage de <strong>2 d&eacute;veloppeurs fullstack</strong> : backlog, sprints, daily stand-ups</li>
+                  <li>Infra Docker Compose sur VPS OVH + d&eacute;ploiement continu</li>
+                </ul>
+              </div>
+              <p class="cv-joke" id="joke-3">// Son manager a dit : "Il est autonome". Traduction : "Il fait tout."</p>
+            </div>
+          </div>
+
+          <!-- Section 4: Experience — Orange -->
+          <div class="cv-section" id="cv-exp2">
+            <div class="cv-block" data-label="EXPERIENCE #2">
+              <div class="exp-card">
+                <div class="exp-title">D&eacute;veloppeur Fullstack</div>
+                <div class="exp-company">Orange Digital Center</div>
+                <div class="exp-date">F&eacute;vrier 2023 &rarr; Septembre 2023 (7 mois)</div>
+                <div class="exp-stack">
+                  <span class="exp-tag">Swift</span><span class="exp-tag">SwiftUI</span><span class="exp-tag">Node.js</span><span class="exp-tag">MySQL</span><span class="exp-tag">Git</span>
+                </div>
+                <ul class="exp-bullets">
+                  <li>App mobile iOS native avec SwiftUI &mdash; navigation fluide et UI responsive</li>
+                  <li>Serveur Node.js + API REST pour donn&eacute;es dynamiques</li>
+                  <li>&Eacute;quipe interdisciplinaire en m&eacute;thode Agile</li>
+                </ul>
+              </div>
+              <p class="cv-joke" id="joke-4">// Orange lui a donn&eacute; un badge. Il l'a gard&eacute;. C'est son Horcrux.</p>
+            </div>
+          </div>
+
+          <!-- Section 5: Stages -->
+          <div class="cv-section" id="cv-exp3">
+            <div class="cv-block" data-label="STAGES">
+              <div class="exp-card" style="margin-bottom:var(--s3);">
+                <div class="exp-title">Stage D&eacute;veloppeur Frontend iOS</div>
+                <div class="exp-company">ESPRIT</div>
+                <div class="exp-date">Ao&ucirc;t 2022 &rarr; Novembre 2022 (3 mois) &middot; Swift &middot; Xcode &middot; Figma</div>
+                <ul class="exp-bullets">
+                  <li>Interfaces iOS avec storyboards &mdash; compatibilit&eacute; iPhone 4s &agrave; iPhone 13</li>
+                  <li>Int&eacute;gration APIs REST + maquettes Figma pixel-perfect</li>
+                </ul>
+              </div>
+              <div class="exp-card">
+                <div class="exp-title">Stage D&eacute;veloppeur Fullstack Mobile</div>
+                <div class="exp-company">Future Proof</div>
+                <div class="exp-date">Juin 2022 &rarr; Ao&ucirc;t 2022 (2 mois) &middot; Flutter &middot; Spring Boot &middot; GraphQL &middot; Docker</div>
+                <ul class="exp-bullets">
+                  <li>Dev mobile Flutter + backend Spring Boot en Agile</li>
+                  <li>Requ&ecirc;tes/mutations GraphQL, gestion tickets Jira</li>
+                </ul>
+              </div>
+              <p class="cv-joke" id="joke-5">// Deux stages. Deux stacks diff&eacute;rentes. Il s'ennuyait vite.</p>
+            </div>
+          </div>
+
+          <!-- Section 6: Education -->
+          <div class="cv-section" id="cv-education">
+            <div class="cv-prompt"><span>&gt;</span> cat /etc/education.txt</div>
+            <div class="cv-block" data-label="FORMATION">
+              <div class="cv-output">
+                <strong>Ing&eacute;nieur Informatique</strong><br>
+                D&eacute;veloppement Mobile &mdash; ESPRIT, Tunisie<br>
+                <span style="color:var(--text-muted);">Sep 2018 &rarr; Nov 2023</span>
+              </div>
+              <p class="cv-joke" id="joke-6">// Il a surv&eacute;cu &agrave; ESPRIT. &Ccedil;a devrait &ecirc;tre un achievement en soi.</p>
+            </div>
+          </div>
+
+          <!-- Section 7: Languages -->
+          <div class="cv-section" id="cv-langs">
+            <div class="cv-prompt"><span>&gt;</span> ./langues_installed.sh</div>
+            <div class="cv-block" data-label="LANGUES">
+              <div class="cv-output" style="font-size:0.85rem;">
+                Arabe &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong style="color:var(--neon-accent);">[NATIF]</strong> &nbsp;&nbsp;// Langue maternelle<br>
+                Fran&ccedil;ais &nbsp;&nbsp;&nbsp; <strong>[B2]</strong> &nbsp;&nbsp;&nbsp;&nbsp;// Professionnel<br>
+                Anglais &nbsp;&nbsp;&nbsp;&nbsp; <strong>[B2]</strong> &nbsp;&nbsp;&nbsp;&nbsp;// Stack Overflow fluent
+              </div>
+              <p class="cv-joke" id="joke-7">// Il debug en 3 langues. Les bugs, eux, sont universels.</p>
+            </div>
+          </div>
+
+          <!-- Final CTA -->
+          <div class="cv-section" id="cv-final">
+            <div class="cv-final">
+              <div class="cv-prompt" style="text-align:center;margin-bottom:var(--s3);">
+                <span>&gt;</span> DOSSIER COMPLETE.<br>
+                <span>&gt;</span> RECOMMENDATION: <strong style="color:var(--neon-accent);">HIRE IMMEDIATELY.</strong><br>
+                <span>&gt;</span> Or at least download the PDF.
+              </div>
+              <div class="cv-nav">
+                <a href="assets/cv/cv_design.pdf" download>&darr; CV DESIGN</a>
+                <a href="assets/cv/cv_ats.pdf" download>&darr; CV ATS</a>
+                <a href="index.html">&larr; PORTFOLIO</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/fx.js"></script>
+  <script>
+    // Tab switching
+    document.querySelectorAll(".cv-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".cv-tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".cv-panel").forEach(p => p.classList.remove("active"));
+        tab.classList.add("active");
+        const panel = document.getElementById("panel-" + tab.dataset.panel);
+        if (panel) panel.classList.add("active");
+        // Start interactive tour when clicking that tab
+        if (tab.dataset.panel === "interactive") startTour();
+      });
+    });
+
+    // Interactive tour animation
+    const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+    function decode(el, text, duration) {
+      return new Promise(resolve => {
+        const start = performance.now();
+        const step = () => {
+          const elapsed = performance.now() - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const reveal = Math.floor(text.length * progress);
+          let out = "";
+          for (let i = 0; i < text.length; i++) {
+            if (i < reveal) out += text[i];
+            else if (text[i] === " ") out += " ";
+            else out += CHARS[Math.floor(Math.random() * CHARS.length)];
+          }
+          el.textContent = out;
+          if (progress < 1) requestAnimationFrame(step);
+          else resolve();
+        };
+        step();
+      });
+    }
+
+    function typeText(el, text, speed) {
+      return new Promise(resolve => {
+        let i = 0;
+        el.innerHTML = "";
+        const tick = () => {
+          if (i < text.length) {
+            el.innerHTML += text[i] === "<" ? text.substring(i, text.indexOf(">", i) + 1) || text[i] : text[i];
+            if (text[i] === "<") i = text.indexOf(">", i);
+            i++;
+            setTimeout(tick, speed + Math.random() * 15);
+          } else resolve();
+        };
+        tick();
+      });
+    }
+
+    function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    let tourStarted = false;
+    async function startTour() {
+      if (tourStarted) return;
+      tourStarted = true;
+
+      const sections = document.querySelectorAll(".cv-section");
+      sections.forEach(s => s.classList.remove("visible"));
+
+      // Intro typing
+      const intro = document.getElementById("cv-intro");
+      intro.classList.add("visible");
+
+      await typeText(document.getElementById("intro-1"), '<span class="cmd">> LOADING CLASSIFIED DOSSIER: CHTOUROU_M.EXE...</span>', 25);
+      await wait(400);
+      await typeText(document.getElementById("intro-2"), '<span class="cmd">> ACCESS LEVEL: RECRUITER</span>', 25);
+      await wait(400);
+      await typeText(document.getElementById("intro-3"), '<span class="warn">\u26A0 WARNING: This candidate has 146,000 users. Handle with caution.</span>', 20);
+      await wait(600);
+      await typeText(document.getElementById("intro-4"), '<span class="cmd">> Decrypting sections...</span>', 25);
+      await wait(800);
+
+      // Reveal sections one by one on scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            // Animate skill bars
+            e.target.querySelectorAll(".skill-fill").forEach(bar => {
+              setTimeout(() => { bar.style.width = bar.dataset.pct + "%"; }, 300);
+            });
+            // Show joke after delay
+            const joke = e.target.querySelector(".cv-joke");
+            if (joke) setTimeout(() => joke.classList.add("show"), 1500);
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.2 });
+
+      sections.forEach((s, i) => {
+        if (i === 0) return; // intro already visible
+        observer.observe(s);
+      });
+
+      // Make first content section visible after intro
+      await wait(600);
+      document.getElementById("cv-identity").classList.add("visible");
+      setTimeout(() => document.getElementById("joke-1")?.classList.add("show"), 1500);
+    }
+
+    // Auto-start if interactive tab is active on load
+    if (document.querySelector('.cv-tab[data-panel="interactive"].active')) {
+      setTimeout(startTour, 500);
+    }
+
+    // Matrix rain init
+    if (window.MMC_MATRIX) MMC_MATRIX.init(document.getElementById("matrix-rain"));
+  </script>
+
+</body>
+</html>
