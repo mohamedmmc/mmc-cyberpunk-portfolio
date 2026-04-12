@@ -78,10 +78,14 @@ const MMC_FLOWFIELD = (() => {
     return s.getPropertyValue("--neon-primary").trim() || "#00f0ff";
   }
 
+  function isLight() {
+    return document.documentElement.getAttribute("data-theme") === "light";
+  }
+
   function draw() {
     if (!running) return;
-    // Trail fade
-    ctx.fillStyle = "rgba(5, 6, 12, 0.05)";
+    // Trail fade — adapt to theme
+    ctx.fillStyle = isLight() ? "rgba(244, 246, 249, 0.05)" : "rgba(5, 6, 12, 0.05)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const color = getColor();
@@ -200,7 +204,8 @@ const MMC_BOIDS = (() => {
 
   function draw() {
     if (!running) return;
-    ctx.fillStyle = "rgba(5, 6, 12, 0.15)";
+    const light = document.documentElement.getAttribute("data-theme") === "light";
+    ctx.fillStyle = light ? "rgba(244, 246, 249, 0.15)" : "rgba(5, 6, 12, 0.15)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     const color = getColor();

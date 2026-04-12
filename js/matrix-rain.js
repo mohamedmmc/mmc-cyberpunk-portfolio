@@ -28,6 +28,10 @@ const MATRIX_RAIN = (() => {
     drops = new Array(cols).fill(1).map(() => Math.random() * -50);
   }
 
+  function isLight() {
+    return document.documentElement.getAttribute("data-theme") === "light";
+  }
+
   function getColor() {
     const style = getComputedStyle(document.documentElement);
     return (style.getPropertyValue("--neon-primary").trim() || "#00f0ff");
@@ -35,11 +39,18 @@ const MATRIX_RAIN = (() => {
 
   function draw() {
     if (!ctx || !running) return;
-    ctx.fillStyle = "rgba(5, 6, 12, 0.08)";
+    const light = isLight();
+
+    // Fade trail — light bg fades to white, dark bg fades to near-black
+    ctx.fillStyle = light ? "rgba(244, 246, 249, 0.06)" : "rgba(5, 6, 12, 0.08)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.font = `${FONT_SIZE}px 'JetBrains Mono', monospace`;
 
     const color = getColor();
+    // Light mode: use slightly darker/more saturated colors for visibility
+    const headColor = light ? "#0055aa" : "#ffffff";
+    const hiddenColor = light ? "#cc0066" : "#ff00ea";
+
     for (let i = 0; i < drops.length; i++) {
       let ch;
       if (i === hiddenCol && drops[i] >= hiddenRow && hiddenIdx < HIDDEN_MSG.length) {
@@ -51,17 +62,17 @@ const MATRIX_RAIN = (() => {
 
       // Head of the rain (brighter)
       if (Math.random() > 0.96) {
-        ctx.fillStyle = "#ffffff";
+        ctx.fillStyle = headColor;
         ctx.shadowColor = color;
-        ctx.shadowBlur = 8;
+        ctx.shadowBlur = light ? 4 : 8;
       } else if (i === hiddenCol && ch !== CHARS[Math.floor(Math.random() * CHARS.length)]) {
-        ctx.fillStyle = "#ff00ea";
-        ctx.shadowColor = "#ff00ea";
-        ctx.shadowBlur = 12;
+        ctx.fillStyle = hiddenColor;
+        ctx.shadowColor = hiddenColor;
+        ctx.shadowBlur = light ? 6 : 12;
       } else {
         ctx.fillStyle = color;
         ctx.shadowColor = color;
-        ctx.shadowBlur = 3;
+        ctx.shadowBlur = light ? 1 : 3;
       }
 
       ctx.fillText(ch, i * FONT_SIZE, drops[i] * FONT_SIZE);
