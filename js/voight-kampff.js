@@ -139,7 +139,7 @@ const MMC_VK = (() => {
       if (window.MMC_ACHIEVEMENTS) window.MMC_ACHIEVEMENTS.unlock("REPLICANT", "You might be synthetic. Run, Blade Runners are coming.");
       if (window.MMC_XP) window.MMC_XP.gain(80, "V-K replicant");
     } else {
-      if (window.MMC_ACHIEVEMENTS) window.MMC_ACHIEVEMENTS.unlock("INCONCLUSIVE", "The test could not determine your humanity.");
+
     }
   }
 

@@ -86,7 +86,7 @@ function startMainPage() {
           motionBtn.classList.add("active");
           setTimeout(() => (motionBtn.style.display = "none"), 1200);
           if (window.MMC_ACHIEVEMENTS) {
-            window.MMC_ACHIEVEMENTS.unlock("TILTED", "You enabled gyroscope control. Tilt away.", "rare");
+
           }
         } else {
           motionBtn.textContent = "✗ DENIED";

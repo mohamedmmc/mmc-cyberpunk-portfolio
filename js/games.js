@@ -93,7 +93,7 @@ const MMC_GAMES = (() => {
         setScore(score);
         food = place();
         if (window.MMC_SOUND) window.MMC_SOUND.presets.beep();
-        if (score >= 20 && window.MMC_ACHIEVEMENTS) window.MMC_ACHIEVEMENTS.unlock("SNAKE_20", "Scored 20 on Snake.");
+
         if (score >= 50 && window.MMC_ACHIEVEMENTS) {
           window.MMC_ACHIEVEMENTS.unlock("SNAKE_MASTER", "Scored 50 on Snake. You have no life (in a good way).");
           if (window.MMC_XP) window.MMC_XP.gain(100, "Snake master");
@@ -386,7 +386,7 @@ const MMC_GAMES = (() => {
     document.addEventListener("keydown", onKey);
     loop = setInterval(() => { if (!paused) step(); }, 220);
     render();
-    if (window.MMC_ACHIEVEMENTS) setTimeout(() => window.MMC_ACHIEVEMENTS.unlock("GAME_OF_LIFE", "You meditated in front of Conway's creation."), 3000);
+
     active = { name: "life", stop: () => { clearInterval(loop); document.removeEventListener("keydown", onKey); } };
   }
 
@@ -452,7 +452,7 @@ const MMC_GAMES = (() => {
     document.addEventListener("keydown", onKey);
     loop = setInterval(tick, 50);
     render();
-    if (window.MMC_ACHIEVEMENTS) setTimeout(() => window.MMC_ACHIEVEMENTS.unlock("DONUT_MASTER", "You achieved zen with the rotating donut."), 4000);
+
     active = { name: "donut", stop: () => { clearInterval(loop); document.removeEventListener("keydown", onKey); } };
   }
 

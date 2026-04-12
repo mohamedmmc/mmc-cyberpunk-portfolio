@@ -22,8 +22,20 @@ const MMC_ACHIEVEMENTS = (() => {
   const queue = [];
   let processing = false;
 
+  // Suppress toasts for the first 4s so new visitors see the hero first
+  let quietMode = true;
+  const pendingQueue = [];
+  setTimeout(() => {
+    quietMode = false;
+    pendingQueue.forEach(item => queue.push(item));
+    pendingQueue.length = 0;
+    if (!processing && queue.length > 0) processQueue();
+  }, 4000);
+
   function enqueue(title, body, tier) {
-    queue.push({ title, body, tier: tier || "common" });
+    const item = { title, body, tier: tier || "common" };
+    if (quietMode) { pendingQueue.push(item); return; }
+    queue.push(item);
     if (!processing) processQueue();
   }
 
@@ -119,20 +131,6 @@ const MMC_EASTER = (() => {
         next ? "ENABLED. Type 'mohamed' again to disable." : "DISABLED. Normal colors restored.",
         "rare"
       );
-    },
-    hackerman: () => {
-      MMC_ACHIEVEMENTS.unlock("HACKERMAN", "Hackerman.gif activated.");
-      matrixMode();
-    },
-    neo: () => {
-      MMC_ACHIEVEMENTS.unlock("WAKE_UP", "Wake up, Neo...");
-      if (window.MMC_GLITCH) window.MMC_GLITCH.vhsBar();
-    },
-    geek: () => {
-      MMC_ACHIEVEMENTS.unlock("GEEK_CERTIFIED", "You are now certified geek.");
-    },
-    tunisia: () => {
-      MMC_ACHIEVEMENTS.unlock("GREETINGS_TN", "Tunisian represent! 🇹🇳");
     },
   };
 
@@ -242,8 +240,6 @@ const MMC_EASTER = (() => {
     console.log("%c → Psst: try typing 'mohamed' on the page.", style3);
     console.log("%c → Or press / to open the terminal.", style3);
     console.log("%c → Achievements: window.MMC_ACHIEVEMENTS.list()", style3);
-    console.log("%c → You just unlocked: DEV_INSPECTOR", "color:#ffcc00;font-weight:bold");
-    setTimeout(() => MMC_ACHIEVEMENTS.unlock("DEV_INSPECTOR", "You opened the console. Nice."), 500);
   }
 
   // Self-destruct fake on triple-click the danger zone
@@ -286,17 +282,6 @@ const MMC_EASTER = (() => {
     MMC_ACHIEVEMENTS.unlock("SELF_DESTRUCTED", "You triple-clicked the wrong button.");
   }
 
-  // Right-click → fake 'access denied'
-  let contextClicks = 0;
-  function initContextMenu() {
-    document.addEventListener("contextmenu", (e) => {
-      contextClicks++;
-      if (contextClicks === 1) {
-        e.preventDefault();
-        MMC_ACHIEVEMENTS.unlock("NOSY", "Trying to inspect the source? Nice.");
-      }
-    });
-  }
 
   // Idle detector (show hint after 20s idle)
   let idleTimer = null;
@@ -313,31 +298,35 @@ const MMC_EASTER = (() => {
     resetIdle();
   }
 
-  // Night owl mode — show a dismissible banner between 23h and 6h
+  // Night owl mode — show a dismissible banner between 23h and 6h (once per session)
   function initNightOwl() {
     const h = new Date().getHours();
     if (h < 23 && h >= 6) return;
+    if (sessionStorage.getItem("mmc_nightowl_shown")) return;
     if (document.querySelector(".night-owl-banner")) return;
-    const banner = document.createElement("div");
-    banner.className = "night-owl-banner";
-    banner.innerHTML = `Still coding at this hour? Respect. Coffee stats: critical. <button aria-label="close" style="background:transparent;border:none;color:inherit;margin-left:8px;font-size:0.9rem;cursor:pointer;">✕</button>`;
-    document.body.appendChild(banner);
-    banner.querySelector("button").addEventListener("click", () => {
-      banner.style.transition = "opacity 0.4s";
-      banner.style.opacity = "0";
-      setTimeout(() => banner.remove(), 500);
-    });
+    sessionStorage.setItem("mmc_nightowl_shown", "1");
+    // Delay banner so the visitor sees the hero section first
     setTimeout(() => {
-      MMC_ACHIEVEMENTS.unlock("NIGHT_OWL", "You visited between 23:00 and 06:00. Welcome, fellow insomniac.");
-      if (window.MMC_XP) window.MMC_XP.gain(60, "Night visit");
-    }, 1500);
-    // Auto-hide after 20s (user-dismissible via ✕)
-    setTimeout(() => {
-      if (!document.body.contains(banner)) return;
-      banner.style.transition = "opacity 1.2s";
-      banner.style.opacity = "0";
-      setTimeout(() => banner.remove(), 1300);
-    }, 20000);
+      const banner = document.createElement("div");
+      banner.className = "night-owl-banner";
+      banner.innerHTML = `Still coding at this hour? Respect. Coffee stats: critical. <button aria-label="close" style="background:transparent;border:none;color:inherit;margin-left:8px;font-size:0.9rem;cursor:pointer;">✕</button>`;
+      document.body.appendChild(banner);
+      banner.querySelector("button").addEventListener("click", () => {
+        banner.style.transition = "opacity 0.4s";
+        banner.style.opacity = "0";
+        setTimeout(() => banner.remove(), 500);
+      });
+      setTimeout(() => {
+        MMC_ACHIEVEMENTS.unlock("NIGHT_OWL", "You visited between 23:00 and 06:00. Welcome, fellow insomniac.", "rare");
+      }, 2000);
+      // Auto-hide after 20s (user-dismissible via ✕)
+      setTimeout(() => {
+        if (!document.body.contains(banner)) return;
+        banner.style.transition = "opacity 1.2s";
+        banner.style.opacity = "0";
+        setTimeout(() => banner.remove(), 1300);
+      }, 20000);
+    }, 6000);
   }
 
   function init() {
@@ -345,7 +334,6 @@ const MMC_EASTER = (() => {
     document.addEventListener("keydown", handleTypingBuffer);
     initThemeCycle();
     initSelfDestruct();
-    initContextMenu();
     initIdle();
     initNightOwl();
     consoleGreeting();

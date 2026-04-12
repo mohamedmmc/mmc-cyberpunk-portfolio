@@ -410,8 +410,6 @@ const MMC_TERM = (() => {
         "HACKED THE PLANET ✓"
       ];
       steps.forEach((s, i) => setTimeout(() => append([{ cls: i === steps.length - 1 ? "ok" : "out", text: s }]), i * 400));
-      if (window.MMC_ACHIEVEMENTS) window.MMC_ACHIEVEMENTS.unlock("HACKER", "You 'hacked' the planet.");
-      if (window.MMC_XP) window.MMC_XP.gain(30, "Hack cmd");
       return { lines: [] };
     },
     cowsay: (args) => {
