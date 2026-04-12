@@ -1329,22 +1329,37 @@ footer {
   background: rgba(0, 119, 204, 0.06);
 }
 
-/* Terminal modal */
+/* Terminal modal — stays dark even in light mode (hacker terminal) */
 [data-theme="light"] .term-modal-inner {
-  background: rgba(245, 247, 250, 0.98);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  background: rgba(5, 6, 12, 0.98);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
 }
 [data-theme="light"] .term-modal-head {
-  background: rgba(0, 119, 204, 0.06);
-  border-bottom-color: var(--border-glow);
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom-color: rgba(0, 255, 65, 0.15);
+}
+[data-theme="light"] .term-modal-head .term-title {
+  color: rgba(200, 200, 200, 0.7);
 }
 [data-theme="light"] .term-input-wrap {
-  background: rgba(255, 255, 255, 0.9);
-  border-top-color: var(--border-glow);
+  background: rgba(5, 6, 12, 0.95);
+  border-top-color: rgba(0, 255, 65, 0.15);
+}
+[data-theme="light"] .term-input-wrap .p {
+  color: #00ff41;
+  text-shadow: 0 0 4px #00ff41;
+}
+[data-theme="light"] .term-input-wrap input {
+  color: #e0e0e0;
+  caret-color: #00f0ff;
+}
+[data-theme="light"] .term-modal-body {
+  color: #e0e0e0;
 }
 [data-theme="light"] .term-modal-body .chip {
-  background: rgba(0, 119, 204, 0.08);
-  border-color: var(--border-glow);
+  background: rgba(0, 255, 65, 0.1);
+  border-color: rgba(0, 255, 65, 0.2);
+  color: #00ff41;
 }
 
 /* Decorative overlays — subtle in light mode */
