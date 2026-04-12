@@ -897,13 +897,13 @@ section {
 .email-link {
   display: inline-block;
   font-family: var(--font-display);
-  font-size: clamp(1.2rem, 3.5vw, 2.2rem);
+  font-size: clamp(1rem, 2.8vw, 2rem);
   color: var(--neon-primary);
   text-shadow: var(--glow-md);
   margin-bottom: var(--s3);
   letter-spacing: 0.04em;
   position: relative;
-  word-break: break-all;
+  white-space: nowrap;
 }
 .email-link::after {
   content: "_";
@@ -1071,8 +1071,7 @@ footer {
   .email-link {
     font-size: clamp(0.7rem, 3.5vw, 1.3rem);
     letter-spacing: 0;
-    word-break: normal;
-    overflow-wrap: anywhere;
+    white-space: nowrap;
   }
   .contact-card { padding: var(--s3); }
   .socials { gap: 6px; }
