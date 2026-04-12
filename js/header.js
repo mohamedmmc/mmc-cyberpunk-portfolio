@@ -11,80 +11,55 @@ try {
 } catch (e) {}
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ---- Theme glitch transition ----
+  // ---- Theme glitch transition (GPU-only: filter + transform + opacity) ----
   let glitchLock = false;
+  let flashEl = null;
 
-  function buildOverlay() {
-    let o = document.getElementById("theme-glitch-overlay");
-    if (o) return o;
-    o = document.createElement("div");
-    o.id = "theme-glitch-overlay";
-    o.className = "theme-glitch-overlay";
-    // Flash layer
-    const flash = document.createElement("div");
-    flash.className = "tg-flash";
-    o.appendChild(flash);
-    // Glitch bands (5 horizontal strips at random heights)
-    const heights = [8, 12, 6, 15, 10];
-    const tops = [5, 22, 45, 65, 82];
-    for (let i = 0; i < 5; i++) {
-      const band = document.createElement("div");
-      band.className = "tg-band";
-      band.style.top = tops[i] + "%";
-      band.style.height = heights[i] + "px";
-      o.appendChild(band);
-    }
-    // RGB split layer
-    const rgb = document.createElement("div");
-    rgb.className = "tg-rgb";
-    o.appendChild(rgb);
-    document.body.appendChild(o);
-    return o;
+  function getFlash() {
+    if (flashEl) return flashEl;
+    flashEl = document.createElement("div");
+    flashEl.className = "theme-flash-overlay";
+    document.body.appendChild(flashEl);
+    return flashEl;
   }
 
   function themeGlitch(toDark, callback) {
     if (glitchLock) return;
     glitchLock = true;
 
-    const overlay = buildOverlay();
     const html = document.documentElement;
-    const vhs = document.querySelector(".vhs-bar");
+    const flash = getFlash();
 
-    // Randomise band positions each time
-    overlay.querySelectorAll(".tg-band").forEach((b) => {
-      b.style.top = (Math.random() * 85 + 5) + "%";
-      b.style.height = (Math.random() * 12 + 4) + "px";
-    });
-
-    // Direction class (controls flash color)
-    overlay.classList.remove("to-dark");
-    if (toDark) overlay.classList.add("to-dark");
-
-    // Start glitch
-    overlay.classList.add("active");
-    html.classList.add("theme-switching");
-    if (vhs) vhs.classList.add("active");
-
-    // Glitch sound burst
-    if (window.MMC_SOUND) {
-      MMC_SOUND.presets.glitch();
-      setTimeout(() => MMC_SOUND.presets.glitch(), 80);
-      setTimeout(() => MMC_SOUND.presets.glitch(), 180);
+    // Set direction
+    html.classList.remove("to-dark");
+    flash.classList.remove("to-dark", "active");
+    if (toDark) {
+      html.classList.add("to-dark");
+      flash.classList.add("to-dark");
     }
 
-    // Apply theme at the flash peak (~280ms)
+    // Force reflow so re-triggering the animation works
+    void flash.offsetWidth;
+
+    // Start — CSS filter distortion on page + flash overlay
+    html.classList.add("theme-switching");
+    flash.classList.add("active");
+
+    // Sound
+    if (window.MMC_SOUND) MMC_SOUND.presets.glitch();
+
+    // Apply theme at distortion peak (~230ms)
     setTimeout(() => {
       callback();
       if (window.MMC_SOUND) MMC_SOUND.presets.success();
-    }, 280);
+    }, 230);
 
-    // Cleanup after animation ends (~750ms)
+    // Cleanup after animation (550ms)
     setTimeout(() => {
-      overlay.classList.remove("active", "to-dark");
-      html.classList.remove("theme-switching");
-      if (vhs) vhs.classList.remove("active");
+      html.classList.remove("theme-switching", "to-dark");
+      flash.classList.remove("active", "to-dark");
       glitchLock = false;
-    }, 750);
+    }, 580);
   }
 
   // ---- Theme toggle ----
