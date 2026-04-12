@@ -57,44 +57,6 @@ function startMainPage() {
     MMC_MATRIX.start();
   }
 
-  // --- Start Tron grid in cyberspace section ---
-  const tronCanvas = document.getElementById("tron-canvas");
-  if (tronCanvas && window.MMC_TRON) {
-    // Observe: start only when near viewport to save CPU
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          MMC_TRON.start(tronCanvas);
-        } else {
-          MMC_TRON.stop();
-        }
-      });
-    }, { threshold: 0.05 });
-    io.observe(tronCanvas);
-
-    // iOS motion permission button (hidden on non-iOS / after enabled)
-    const motionBtn = document.getElementById("tron-motion-enable");
-    if (motionBtn) {
-      const needsPermission =
-        typeof DeviceOrientationEvent !== "undefined" &&
-        typeof DeviceOrientationEvent.requestPermission === "function";
-      if (!needsPermission) motionBtn.style.display = "none";
-      motionBtn.addEventListener("click", async () => {
-        const ok = await MMC_TRON.enableOrientation();
-        if (ok) {
-          motionBtn.textContent = "✓ MOTION_ACTIVE";
-          motionBtn.classList.add("active");
-          setTimeout(() => (motionBtn.style.display = "none"), 1200);
-          if (window.MMC_ACHIEVEMENTS) {
-
-          }
-        } else {
-          motionBtn.textContent = "✗ DENIED";
-        }
-      });
-    }
-  }
-
   // --- Glitch text init ---
   if (window.MMC_GLITCH) {
     MMC_GLITCH.initGlitchText();

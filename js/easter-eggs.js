@@ -119,6 +119,12 @@ const MMC_EASTER = (() => {
   // Typing buffer for word triggers
   let typingBuffer = "";
   const WORDS = {
+    "1337": () => {
+      if (window.MMC_I18N) {
+        const current = window.MMC_I18N.state.current;
+        window.MMC_I18N.apply(current === "1337" ? "fr" : "1337");
+      }
+    },
     mohamed: () => {
       MMC_ACHIEVEMENTS.unlock("NAME_CALLER", "You typed my name. Respect.", "rare");
       // Persistent toggle
