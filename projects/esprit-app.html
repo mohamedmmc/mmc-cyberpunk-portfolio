@@ -52,6 +52,7 @@
 
   <script src="../js/analytics.js"></script>
   <script src="../js/track.js"></script>
+  <script src="../js/header.js"></script>
 
   <link rel="icon" href="../assets/img/portfolio/esprit/esprit.webp" type="image/webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -78,13 +79,18 @@
     <div class="bracket bracket-br"></div>
   </div>
 
-  <header class="status-bar">
+  <header class="status-bar" role="banner" aria-label="Status bar">
     <div class="status-left">
       <span class="status-dot"></span>
       <span>PROJECT_LOADER.EXE // ACCESS_GRANTED</span>
     </div>
     <div class="status-right">
-      <a href="../index.html" style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;">← BACK_TO_INDEX</a>
+      <a href="../index.html" style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;padding:4px 10px;border:1px solid var(--border-glow);background:rgba(0,240,255,0.04);transition:all 0.2s;">&larr; BACK</a>
+      <button data-lang="fr" aria-label="Switch to French">FR</button>
+      <button data-lang="en" aria-label="Switch to English">EN</button>
+      <a href="../cv.html" class="status-cv-link" aria-label="View CV">&gt;_ CV</a>
+      <button id="theme-toggle" aria-label="Toggle light/dark mode">☀ LIGHT</button>
+      <button id="sound-toggle" aria-label="Toggle sound effects">SOUND:OFF</button>
     </div>
   </header>
 

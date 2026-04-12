@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="js/analytics.js"></script>
   <script src="js/track.js"></script>
+  <script src="js/header.js"></script>
   <title>CV — Mohamed Melek Chtourou</title>
   <meta name="description" content="CV de Mohamed Melek Chtourou — Ingénieur Flutter & Node.js. Téléchargez en PDF ou explorez la version interactive." />
   <meta name="robots" content="index, follow" />
@@ -285,11 +286,34 @@
       margin-bottom: var(--s3);
     }
 
+    .status-back-link {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 4px 10px;
+      border: 1px solid var(--border-glow);
+      background: rgba(0, 240, 255, 0.04);
+      transition: all 0.2s;
+    }
+    .status-back-link:hover {
+      color: var(--neon-primary);
+      border-color: var(--neon-primary);
+    }
+
     @media (max-width: 600px) {
+      .cv-page { padding-top: 50px; }
       .cv-tabs { gap: 6px; }
       .cv-tab { padding: 8px 14px; font-size: 0.75rem; }
       .skill-name { min-width: 70px; font-size: 0.72rem; }
       .exp-card { padding-left: var(--s2); }
+      .cv-block { padding: var(--s2); }
+      .cv-nav { gap: 8px; }
+      .cv-nav a, .cv-nav button { padding: 8px 16px; font-size: 0.75rem; }
+      .cv-download-btn { padding: 12px 20px; font-size: 0.85rem; }
+      .cv-block pre { font-size: 0.7rem; }
     }
   </style>
 </head>
@@ -308,13 +332,17 @@
     <div class="bracket bracket-br"></div>
   </div>
 
-  <header class="status-bar" role="banner">
+  <header class="status-bar" role="banner" aria-label="Status bar">
     <div class="status-left">
       <span class="status-dot"></span>
       <span>CV_VIEWER.EXE // ACCESS_GRANTED</span>
     </div>
     <div class="status-right">
-      <a href="index.html" style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;padding:3px 8px;border:1px solid transparent;">&larr; BACK_TO_PORTFOLIO</a>
+      <a href="index.html" class="status-back-link">&larr; BACK</a>
+      <button data-lang="fr" aria-label="Switch to French">FR</button>
+      <button data-lang="en" aria-label="Switch to English">EN</button>
+      <button id="theme-toggle" aria-label="Toggle light/dark mode">☀ LIGHT</button>
+      <button id="sound-toggle" aria-label="Toggle sound effects">SOUND:OFF</button>
     </div>
   </header>
 

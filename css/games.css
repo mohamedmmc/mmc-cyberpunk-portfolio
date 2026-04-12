@@ -103,6 +103,12 @@
   cursor: pointer;
   transition: all 0.15s ease;
   user-select: none;
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  max-width: 180px;
+  text-overflow: ellipsis;
+  order: 99;
 }
 .xp-badge:hover {
   background: rgba(0, 240, 255, 0.12);

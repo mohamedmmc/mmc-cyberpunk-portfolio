@@ -19,21 +19,11 @@ window.addEventListener("storage", (e) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // --- Restore theme ---
-  const savedTheme = localStorage.getItem("mmc_theme");
-  if (savedTheme) document.documentElement.setAttribute("data-theme", savedTheme);
+  // Theme restore handled by header.js
 
-  // --- Sound init ---
-  if (window.MMC_SOUND) MMC_SOUND.init();
+  // Sound init handled by header.js
 
-  // --- i18n: apply saved language ---
-  if (window.MMC_I18N) {
-    const saved = localStorage.getItem("mmc_lang") || "fr";
-    MMC_I18N.apply(saved);
-    document.querySelectorAll("[data-lang]").forEach((btn) => {
-      btn.addEventListener("click", () => MMC_I18N.apply(btn.getAttribute("data-lang")));
-    });
-  }
+  // Language init handled by header.js
 
   // --- Boot sequence ---
   if (window.MMC_BOOT) {
@@ -57,28 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateProgress();
   }
 
-  // ---- Light mode toggle ----
-  const themeToggle = document.getElementById("theme-toggle");
-  if (themeToggle) {
-    const savedTheme = localStorage.getItem("mmc_theme");
-    if (savedTheme === "light") {
-      document.documentElement.setAttribute("data-theme", "light");
-      themeToggle.textContent = "☾ DARK";
-    }
-    themeToggle.addEventListener("click", () => {
-      const isLight = document.documentElement.getAttribute("data-theme") === "light";
-      if (isLight) {
-        document.documentElement.removeAttribute("data-theme");
-        localStorage.setItem("mmc_theme", "");
-        themeToggle.textContent = "☀ LIGHT";
-      } else {
-        document.documentElement.setAttribute("data-theme", "light");
-        localStorage.setItem("mmc_theme", "light");
-        themeToggle.textContent = "☾ DARK";
-      }
-      if (window.MMC_SOUND) window.MMC_SOUND.presets.success();
-    });
-  }
+  // Light mode toggle handled by header.js
 });
 
 function startMainPage() {
@@ -138,9 +107,7 @@ function startMainPage() {
   // --- Uptime counter ---
   initUptime();
 
-  // --- Sound toggle ---
-  const soundBtn = document.getElementById("sound-toggle");
-  if (soundBtn) soundBtn.addEventListener("click", () => MMC_SOUND.toggle());
+  // Sound toggle handled by header.js
 
   // --- Terminal ---
   if (window.MMC_TERM) MMC_TERM.init();

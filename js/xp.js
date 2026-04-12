@@ -231,7 +231,7 @@ const MMC_XP = (() => {
       badge.setAttribute("role", "button");
       badge.setAttribute("tabindex", "0");
       badge.setAttribute("title", "View achievements");
-      statusRight.insertBefore(badge, statusRight.firstChild);
+      statusRight.appendChild(badge);
       // Click → open terminal + show achievements
       const openDashboard = () => {
         if (window.MMC_TERM) {

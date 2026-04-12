@@ -239,6 +239,16 @@ section {
   align-items: center;
   gap: var(--s2);
 }
+.status-left {
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.status-right {
+  flex-shrink: 0;
+}
 
 .status-dot {
   width: 8px;
@@ -294,6 +304,25 @@ section {
 @keyframes pulseGlow {
   0%, 100% { box-shadow: 0 0 4px rgba(0, 240, 255, 0.2); }
   50% { box-shadow: 0 0 10px rgba(0, 240, 255, 0.4); }
+}
+
+/* ---------- Back link (sub-pages) ---------- */
+.status-back-link {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid var(--border-glow);
+  background: rgba(0, 240, 255, 0.04);
+  transition: all 0.2s;
+}
+.status-back-link:hover {
+  color: var(--neon-primary);
+  border-color: var(--neon-primary);
+  background: rgba(0, 240, 255, 0.1);
 }
 
 /* ---------- Language switch glitch overlay ---------- */
@@ -1136,8 +1165,35 @@ footer {
   }
   .hud-brackets { inset: 42px 6px 36px 6px; }
   .bracket { width: 22px; height: 22px; }
-  .status-bar { padding: 0 var(--s2); height: 32px; font-size: 0.62rem; }
+  .status-bar {
+    padding: 4px var(--s2);
+    min-height: 32px;
+    height: auto;
+    font-size: 0.6rem;
+    flex-wrap: wrap;
+    gap: 2px 0;
+  }
   .status-bar .uptime { display: none; }
+  .status-left {
+    flex: 0 0 auto;
+    max-width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .status-left span:last-child { font-size: 0.55rem; }
+  .status-right {
+    flex: 1 1 auto;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 3px;
+  }
+  .status-right button,
+  .status-right a {
+    padding: 2px 6px;
+    font-size: 0.58rem;
+  }
+  #sound-toggle { display: none; }
   .bottom-bar { height: 28px; font-size: 0.6rem; padding: 0 var(--s2); }
   body { cursor: auto; }
   button, a, input { cursor: auto !important; }
@@ -1262,6 +1318,104 @@ footer {
 [data-theme="light"] pre,
 [data-theme="light"] code {
   background: rgba(0, 0, 0, 0.05);
+}
+
+/* Terminal about-window */
+[data-theme="light"] .term-window {
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+[data-theme="light"] .term-head {
+  background: rgba(0, 119, 204, 0.06);
+}
+
+/* Terminal modal */
+[data-theme="light"] .term-modal-inner {
+  background: rgba(245, 247, 250, 0.98);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+[data-theme="light"] .term-modal-head {
+  background: rgba(0, 119, 204, 0.06);
+  border-bottom-color: var(--border-glow);
+}
+[data-theme="light"] .term-input-wrap {
+  background: rgba(255, 255, 255, 0.9);
+  border-top-color: var(--border-glow);
+}
+[data-theme="light"] .term-modal-body .chip {
+  background: rgba(0, 119, 204, 0.08);
+  border-color: var(--border-glow);
+}
+
+/* Decorative overlays — subtle in light mode */
+[data-theme="light"] .scanlines { opacity: 0.015; }
+[data-theme="light"] .crt-vignette { opacity: 0.08; }
+[data-theme="light"] .noise { opacity: 0.008; }
+[data-theme="light"] .matrix-canvas { opacity: 0.03; }
+[data-theme="light"] .vhs-bar { opacity: 0.04; }
+[data-theme="light"] .hud-brackets .bracket { border-color: rgba(0, 119, 204, 0.15); }
+
+/* CV page blocks */
+[data-theme="light"] .cv-block {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: var(--border-glow);
+}
+[data-theme="light"] .cv-tab {
+  background: rgba(255, 255, 255, 0.7);
+}
+[data-theme="light"] .cv-download-btn {
+  color: #fff;
+  background: var(--neon-primary);
+}
+[data-theme="light"] .cv-download-btn.ghost {
+  color: var(--neon-primary);
+  background: transparent;
+}
+[data-theme="light"] .skill-bar {
+  background: rgba(0, 119, 204, 0.06);
+}
+
+/* Info cards (project pages) */
+[data-theme="light"] .info-card {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: var(--border-glow);
+}
+[data-theme="light"] .arch {
+  background: rgba(255, 255, 255, 0.7);
+}
+[data-theme="light"] .arch-node {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Gallery */
+[data-theme="light"] .gallery-item {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+/* Buttons in light mode */
+[data-theme="light"] .status-bar button {
+  background: rgba(0, 119, 204, 0.06);
+  border-color: rgba(0, 119, 204, 0.2);
+}
+[data-theme="light"] .status-cv-link {
+  background: rgba(0, 119, 204, 0.08);
+  border-color: var(--neon-primary);
+}
+[data-theme="light"] .btn-cyber {
+  border-color: var(--neon-primary);
+}
+[data-theme="light"] .tech-chip {
+  background: rgba(0, 119, 204, 0.06);
+  border-color: rgba(0, 119, 204, 0.2);
+}
+
+/* Section headers */
+[data-theme="light"] .section-title {
+  text-shadow: none;
+}
+[data-theme="light"] .glitch::before,
+[data-theme="light"] .glitch::after {
+  display: none;
 }
 
 /* ---------- Contact form ---------- */
