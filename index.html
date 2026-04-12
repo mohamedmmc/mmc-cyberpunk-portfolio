@@ -148,6 +148,9 @@
   }
   </script>
 
+  <!-- Preload critical assets -->
+  <link rel="preload" href="assets/img/mmc2.webp" as="image" type="image/webp" />
+
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -164,6 +167,7 @@
   <link rel="stylesheet" href="css/games.css" />
 </head>
 <body>
+  <a href="#about" class="skip-link">Skip to content</a>
 
   <!-- Boot Sequence Overlay -->
   <div id="boot-sequence">
@@ -188,15 +192,15 @@
   </div>
 
   <!-- Top Status Bar -->
-  <header class="status-bar">
+  <header class="status-bar" role="banner" aria-label="Status bar">
     <div class="status-left">
       <span class="status-dot"></span>
       <span data-i18n="status_online">NEO_CHTOUROU.EXE // SYSTEM ONLINE</span>
     </div>
     <div class="status-right">
-      <button data-lang="fr">FR</button>
-      <button data-lang="en">EN</button>
-      <button id="sound-toggle">SOUND:OFF</button>
+      <button data-lang="fr" aria-label="Switch to French">FR</button>
+      <button data-lang="en" aria-label="Switch to English">EN</button>
+      <button id="sound-toggle" aria-label="Toggle sound effects">SOUND:OFF</button>
       <span class="uptime"><span data-i18n="status_uptime">UPTIME</span>: <span id="uptime-counter">00:00:00</span></span>
     </div>
   </header>
@@ -204,8 +208,8 @@
   <!-- =========================================================
        HERO
   ========================================================= -->
-  <main>
-  <section id="hero">
+  <main role="main">
+  <section id="hero" aria-label="Introduction">
     <div class="container">
       <div class="hero-wrap">
         <div class="hero-content">
@@ -276,7 +280,7 @@
   <!-- =========================================================
        01 / ABOUT
   ========================================================= -->
-  <section id="about">
+  <section id="about" aria-label="About me">
     <div class="container">
       <div class="section-header reveal">
         <h2 class="section-title glitch" data-text="// 01_ABOUT" data-i18n="about_title">// 01_ABOUT</h2>
@@ -311,7 +315,7 @@
   <!-- =========================================================
        02 / SKILLS
   ========================================================= -->
-  <section id="skills">
+  <section id="skills" aria-label="Skills">
     <div class="container">
       <div class="section-header reveal">
         <h2 class="section-title glitch" data-text="// 02_SKILLS_MATRIX" data-i18n="skills_title">// 02_SKILLS_MATRIX</h2>
@@ -405,7 +409,7 @@
   <!-- =========================================================
        03 / PROJECTS
   ========================================================= -->
-  <section id="projects">
+  <section id="projects" aria-label="Projects">
     <div class="container">
       <div class="section-header reveal">
         <h2 class="section-title glitch" data-text="// 03_PROJECTS.DB" data-i18n="projects_title">// 03_PROJECTS.DB</h2>
@@ -555,7 +559,7 @@
   <!-- =========================================================
        04 / CONTACT
   ========================================================= -->
-  <section id="contact">
+  <section id="contact" aria-label="Contact">
     <div class="container">
       <div class="section-header reveal">
         <h2 class="section-title glitch" data-text="// 04_TRANSMIT_SIGNAL" data-i18n="contact_title">// 04_TRANSMIT_SIGNAL</h2>
@@ -585,7 +589,7 @@
   <!-- =========================================================
        FOOTER
   ========================================================= -->
-  <footer>
+  <footer role="contentinfo">
     <div class="container">
       <pre class="ascii-footer">
   ╔══════════════════════════════════════════════════════════╗
@@ -609,7 +613,7 @@
   </div>
 
   <!-- Terminal Modal -->
-  <div id="term-modal" class="term-modal">
+  <div id="term-modal" class="term-modal" role="dialog" aria-label="Terminal">
     <div class="term-modal-inner">
       <div class="term-modal-head">
         <div class="dots">
@@ -618,7 +622,7 @@
           <span class="dot g"></span>
         </div>
         <span class="t-title">root@chtourou.sh — interactive shell</span>
-        <button class="t-close">✕</button>
+        <button class="t-close" aria-label="Close terminal">✕</button>
       </div>
       <div class="term-modal-body"></div>
       <div class="term-input-wrap">
@@ -649,5 +653,10 @@
   <script defer src="js/terminal.js"></script>
   <script defer src="js/easter-eggs.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js").catch(() => {});
+    }
+  </script>
 </body>
 </html>
