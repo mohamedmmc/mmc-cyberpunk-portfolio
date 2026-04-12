@@ -1329,51 +1329,57 @@ footer {
   background: rgba(0, 119, 204, 0.06);
 }
 
-/* Terminal modal — stays dark even in light mode (hacker terminal) */
+/* Terminal modal — light theme: white background, dark readable text */
 [data-theme="light"] .term-modal-inner {
-  background: rgba(5, 6, 12, 0.98);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  background: rgba(248, 250, 252, 0.99);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 119, 204, 0.2);
 }
 [data-theme="light"] .term-modal-head {
-  background: rgba(0, 0, 0, 0.3);
-  border-bottom-color: rgba(0, 255, 65, 0.15);
+  background: rgba(0, 119, 204, 0.06);
+  border-bottom-color: rgba(0, 119, 204, 0.15);
 }
 [data-theme="light"] .term-modal-head .term-title {
-  color: rgba(200, 200, 200, 0.7);
+  color: #6b7280;
 }
+[data-theme="light"] .term-modal-head .term-dot.red { background: #ff6b6b; box-shadow: none; }
+[data-theme="light"] .term-modal-head .term-dot.yellow { background: #ffc107; box-shadow: none; }
+[data-theme="light"] .term-modal-head .term-dot.green { background: #4caf50; box-shadow: none; }
+[data-theme="light"] .term-modal-head .t-close { color: #6b7280; text-shadow: none; }
+[data-theme="light"] .term-modal-head .t-close:hover { color: #e53935; text-shadow: none; }
 [data-theme="light"] .term-input-wrap {
-  background: rgba(5, 6, 12, 0.95);
-  border-top-color: rgba(0, 255, 65, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+  border-top-color: rgba(0, 119, 204, 0.15);
 }
 [data-theme="light"] .term-input-wrap .p {
-  color: #00ff41;
-  text-shadow: 0 0 4px #00ff41;
+  color: #0077cc;
+  text-shadow: none;
 }
 [data-theme="light"] .term-input-wrap input {
-  color: #e0e0e0;
-  caret-color: #00f0ff;
+  color: #1a1a2e;
+  caret-color: #0077cc;
 }
 [data-theme="light"] .term-modal-body {
-  color: #e0e0e0;
-  background: rgba(5, 6, 12, 0.9);
+  color: #1a1a2e;
+  background: rgba(255, 255, 255, 0.95);
 }
-[data-theme="light"] .term-modal-body .line { color: #e0e0e0; }
-[data-theme="light"] .term-modal-body .prompt { color: #00ff41; text-shadow: 0 0 4px #00ff41; }
-[data-theme="light"] .term-modal-body .cmd { color: #f0f0f0; }
-[data-theme="light"] .term-modal-body .out { color: #b0b8c0; }
-[data-theme="light"] .term-modal-body .ok { color: #00ff41; text-shadow: 0 0 4px #00ff41; }
-[data-theme="light"] .term-modal-body .err { color: #ff4444; text-shadow: 0 0 4px #ff4444; }
-[data-theme="light"] .term-modal-body .hint { color: #7a8899; }
-[data-theme="light"] .term-modal-body .cta { color: #00ff41; text-shadow: 0 0 6px #00ff41; }
-[data-theme="light"] .term-modal-body a { color: #00f0ff; }
+[data-theme="light"] .term-modal-body .line { color: #2d2d44; }
+[data-theme="light"] .term-modal-body .prompt { color: #0077cc; text-shadow: none; }
+[data-theme="light"] .term-modal-body .cmd { color: #1a1a2e; }
+[data-theme="light"] .term-modal-body .out { color: #374151; }
+[data-theme="light"] .term-modal-body .ok { color: #00864e; text-shadow: none; }
+[data-theme="light"] .term-modal-body .err { color: #dc2626; text-shadow: none; }
+[data-theme="light"] .term-modal-body .hint { color: #6b7280; }
+[data-theme="light"] .term-modal-body .cta { color: #0077cc; text-shadow: none; font-weight: 600; }
+[data-theme="light"] .term-modal-body a { color: #0077cc; }
 [data-theme="light"] .term-modal-body .chip {
-  background: rgba(0, 255, 65, 0.1);
-  border-color: rgba(0, 255, 65, 0.2);
-  color: #88ff88;
-  text-shadow: 0 0 4px #00ff41;
+  background: rgba(0, 119, 204, 0.08);
+  border-color: rgba(0, 119, 204, 0.2);
+  color: #0077cc;
+  text-shadow: none;
 }
-[data-theme="light"] .term-modal-body::-webkit-scrollbar-track { background: rgba(0, 240, 255, 0.05); }
-[data-theme="light"] .term-modal-body::-webkit-scrollbar-thumb { background: #00f0ff; }
+[data-theme="light"] .term-modal-body::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.03); }
+[data-theme="light"] .term-modal-body::-webkit-scrollbar-thumb { background: rgba(0, 119, 204, 0.3); }
 
 /* Decorative overlays — subtle in light mode */
 [data-theme="light"] .scanlines { opacity: 0.015; }
