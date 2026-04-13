@@ -1,0 +1,10 @@
+# Protect config and rate-limit files from web access
+<FilesMatch "^(config\.php|config\.example\.php|\.htaccess)$">
+  Require all denied
+</FilesMatch>
+
+# Block direct access to rate-limit dir
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^\.ratelimit/ - [F,L]
+</IfModule>

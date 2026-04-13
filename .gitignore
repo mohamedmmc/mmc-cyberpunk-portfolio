@@ -29,6 +29,10 @@ worker/.dev.vars
 # Logs
 *.log
 
+# Server-side secrets (SMTP credentials — NEVER commit)
+api/config.php
+api/.ratelimit/
+
 # ----------------------------------------------------------------------
 # Private dev journal — these would spoil the CTF or expose draft notes.
 # Keep them out of the public repo.

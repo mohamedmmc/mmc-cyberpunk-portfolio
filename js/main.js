@@ -201,7 +201,7 @@ function initAnalyticsBindings() {
       showStatus(status, "", "");
 
       try {
-        const res = await fetch("https://mmc-feed.purple-mode-c78c.workers.dev/contact", {
+        const res = await fetch("/api/contact.php", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
