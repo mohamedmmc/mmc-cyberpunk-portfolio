@@ -82,15 +82,80 @@ $safeM = nl2br(htmlspecialchars($message, ENT_QUOTES, 'UTF-8'));
 $ip = $_SERVER['REMOTE_ADDR'] ?? '?';
 
 $html = <<<HTML
-<div style="font-family:'Courier New',monospace;max-width:600px;margin:0 auto;padding:24px;background:#0a0b18;color:#e4f6ff;border:1px solid rgba(0,240,255,0.3);border-radius:8px">
-  <h2 style="color:#00f0ff;margin:0 0 16px;font-size:18px">📩 Nouveau message — Portfolio</h2>
-  <p style="margin:8px 0"><strong style="color:#00f0ff">Nom :</strong> {$safeN}</p>
-  <p style="margin:8px 0"><strong style="color:#00f0ff">Email :</strong> <a href="mailto:{$safeE}" style="color:#ff00ea">{$safeE}</a></p>
-  <hr style="border:none;border-top:1px solid rgba(0,240,255,0.2);margin:16px 0">
-  <div style="white-space:pre-wrap;line-height:1.7;font-size:14px">{$safeM}</div>
-  <hr style="border:none;border-top:1px solid rgba(0,240,255,0.2);margin:16px 0">
-  <p style="color:#4a5a6e;font-size:11px">IP: {$ip} · {$date}</p>
-</div>
+<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;padding:0;background:#0d0e1a;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#0d0e1a;padding:40px 20px">
+<tr><td align="center">
+<table width="580" cellpadding="0" cellspacing="0" style="background:#12132a;border-radius:12px;overflow:hidden;border:1px solid #1a1d3a">
+
+  <!-- Header gradient bar -->
+  <tr><td style="height:4px;background:linear-gradient(90deg,#00f0ff,#ff00ea,#00ff41,#00f0ff)"></td></tr>
+
+  <!-- Logo / Title -->
+  <tr><td style="padding:32px 36px 20px;text-align:center">
+    <p style="margin:0 0 8px;font-family:'Courier New',monospace;font-size:11px;color:#4a5a6e;letter-spacing:4px;text-transform:uppercase">INCOMING TRANSMISSION</p>
+    <h1 style="margin:0;font-family:'Courier New',monospace;font-size:22px;color:#00f0ff;font-weight:700;letter-spacing:1px">📩 Nouveau message</h1>
+  </td></tr>
+
+  <!-- Divider -->
+  <tr><td style="padding:0 36px"><div style="height:1px;background:linear-gradient(90deg,transparent,#1e2345,transparent)"></div></td></tr>
+
+  <!-- Sender info -->
+  <tr><td style="padding:24px 36px">
+    <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+        <td style="padding:14px 18px;background:#0d0e1a;border-radius:8px;border:1px solid #1a1d3a">
+          <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+              <td style="padding-bottom:10px">
+                <span style="font-size:11px;color:#4a5a6e;text-transform:uppercase;letter-spacing:2px">Expéditeur</span>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-bottom:8px">
+                <span style="color:#00f0ff;font-size:13px;font-weight:600">👤</span>
+                <span style="color:#e4f6ff;font-size:15px;font-weight:600;margin-left:8px">{$safeN}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span style="color:#ff00ea;font-size:13px;font-weight:600">✉️</span>
+                <a href="mailto:{$safeE}" style="color:#ff00ea;font-size:14px;text-decoration:none;margin-left:8px;border-bottom:1px dashed rgba(255,0,234,0.3)">{$safeE}</a>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </td></tr>
+
+  <!-- Message -->
+  <tr><td style="padding:0 36px 28px">
+    <p style="margin:0 0 10px;font-size:11px;color:#4a5a6e;text-transform:uppercase;letter-spacing:2px">Message</p>
+    <div style="padding:20px;background:#0d0e1a;border-radius:8px;border:1px solid #1a1d3a;border-left:3px solid #00f0ff">
+      <p style="margin:0;color:#c8d6e0;font-size:14px;line-height:1.8;white-space:pre-wrap">{$safeM}</p>
+    </div>
+  </td></tr>
+
+  <!-- Footer divider -->
+  <tr><td style="padding:0 36px"><div style="height:1px;background:linear-gradient(90deg,transparent,#1e2345,transparent)"></div></td></tr>
+
+  <!-- Footer -->
+  <tr><td style="padding:20px 36px 28px;text-align:center">
+    <p style="margin:0 0 6px;font-family:'Courier New',monospace;font-size:10px;color:#2a3244;letter-spacing:1px">
+      IP: {$ip}
+    </p>
+    <p style="margin:0;font-family:'Courier New',monospace;font-size:10px;color:#2a3244;letter-spacing:1px">
+      {$date}
+    </p>
+  </td></tr>
+
+  <!-- Bottom gradient bar -->
+  <tr><td style="height:3px;background:linear-gradient(90deg,#00f0ff,#ff00ea,#00ff41,#00f0ff)"></td></tr>
+
+</table>
+</td></tr>
+</table>
+</body></html>
 HTML;
 
 // --- Send via SMTP over SSL ---
